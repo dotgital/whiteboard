@@ -1,0 +1,144 @@
+import { ApplicationsDashboardComponent } from './applications-dashboard/applications-dashboard.component';
+import { BrowserModule } from '@angular/platform-browser';
+import { NgModule } from '@angular/core';
+
+import { AppRoutingModule } from './app-routing.module';
+import { AppComponent } from './app.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NavigationComponent } from './navigation/navigation.component';
+import { LayoutModule } from '@angular/cdk/layout';
+import { FormComponent } from './form/form/form.component';
+import { PdfViewerModule } from 'ng2-pdf-viewer';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { FormListComponent } from './form-list/form-list.component';
+
+import { AngularFireModule } from '@angular/fire';
+import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { AngularFireAuthModule } from '@angular/fire/auth';
+import { AngularFireStorageModule } from '@angular/fire/storage';
+import { environment } from '../environments/environment';
+
+import { FlexLayoutModule } from '@angular/flex-layout';
+
+import { MatToolbarModule,
+  MatButtonModule,
+  MatSidenavModule,
+  MatIconModule,
+  MatListModule,
+  MatProgressBarModule,
+  MatCheckboxModule,
+  MatRadioModule,
+  MatFormFieldModule,
+  MatSortModule,
+  MatPaginatorModule,
+  MatDialogModule,
+  MatSnackBarModule,
+  MatTableModule,
+  MatInputModule,
+  MatDatepickerModule,
+  MatNativeDateModule,
+  MatCardModule,
+  MatButtonToggleModule,
+  MatSlideToggleModule,
+  MatProgressSpinnerModule,
+  MatSelectModule} from '@angular/material';
+import { LoginComponent } from './login/login.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { RegisterComponent } from './register/register.component';
+import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
+import { UsersComponent } from './users/users.component';
+import { CreateUserComponent } from './users/create-user/create-user.component';
+import { InfiniteScrollModule } from 'ngx-infinite-scroll';
+import { ScrollingModule } from '@angular/cdk/scrolling';
+import { ApplicationsComponent } from './applications/applications.component';
+import { CreateApplicationComponent } from './applications/create-application/create-application.component';
+import { WhiteboardComponent } from './whiteboard/whiteboard.component';
+import { ManageApplicationsComponent } from './applications/manage-applications/manage-applications.component';
+import { ErrorInterceptor } from './_helpers/error.interceptor';
+import { JwtInterceptor } from './_helpers/jwt.interceptor';
+import { GraphQLModule } from './graphql.module';
+
+import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
+import { ApplicationsAdminComponent } from './applications-admin/applications-admin.component';
+import { MessageComponent } from './applications-dashboard/message/message.component';
+import { ApplicationsStatsComponent } from './applications-stats/applications-stats.component';
+
+const config: SocketIoConfig = { url: 'https://backend.apartmentsource.com', options: {query: {userId: null}} };
+
+
+@NgModule({
+  declarations: [
+    AppComponent,
+    NavigationComponent,
+    FormComponent,
+    FormListComponent,
+    LoginComponent,
+    DashboardComponent,
+    RegisterComponent,
+    ForgotPasswordComponent,
+    UsersComponent,
+    CreateUserComponent,
+    CreateApplicationComponent,
+    ApplicationsComponent,
+    CreateApplicationComponent,
+    WhiteboardComponent,
+    ApplicationsDashboardComponent,
+    ManageApplicationsComponent,
+    ApplicationsAdminComponent,
+    MessageComponent,
+    ApplicationsStatsComponent,
+  ],
+  imports: [
+    FormsModule,
+    ReactiveFormsModule,
+    BrowserModule,
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    LayoutModule,
+    MatToolbarModule,
+    MatButtonModule,
+    MatSidenavModule,
+    MatIconModule,
+    MatListModule,
+    MatSelectModule,
+    MatProgressBarModule,
+    MatProgressSpinnerModule,
+    MatCheckboxModule,
+    MatFormFieldModule,
+    MatSortModule,
+    MatDialogModule,
+    MatButtonToggleModule,
+    MatSnackBarModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatCardModule,
+    MatPaginatorModule,
+    MatSlideToggleModule,
+    MatTableModule,
+    MatInputModule,
+    MatRadioModule,
+    PdfViewerModule,
+    HttpClientModule,
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFirestoreModule,
+    AngularFireAuthModule,
+    AngularFireStorageModule,
+    ScrollingModule,
+    FlexLayoutModule,
+    GraphQLModule,
+    SocketIoModule.forRoot(config),
+    // SocketIoModule,
+  ],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
+  ],
+  bootstrap: [AppComponent],
+  entryComponents: [
+    CreateUserComponent,
+    CreateApplicationComponent,
+    MessageComponent,
+  ]
+})
+export class AppModule { }

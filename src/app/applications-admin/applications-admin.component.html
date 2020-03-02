@@ -1,0 +1,182 @@
+<mat-progress-bar mode="indeterminate" *ngIf="loading" class="loading-top" color="warn"></mat-progress-bar>
+<div class="content">
+    <mat-card style="padding: 5px 10px; margin-bottom: 10px; border-radius: 0px;" class="mat-elevation-z1">
+        <div fxLayout="row" fxLayoutAlign="start stretch" fxLayoutGap="10px">
+            <div fxFlex>
+              <mat-form-field appearance="outline"  class="no-padding">
+                <mat-label>Search</mat-label>
+                <input matInput class="form-control" [(ngModel)]="search" 
+                type="text" name="userQuestion" id="userQuestions"
+                (ngModelChange)="this.searchUpdate.next($event)" (keyup)="keyUpLoading()" >
+                <button mat-button *ngIf="search" matSuffix mat-icon-button aria-label="Clear" (click)="this.searchUpdate.next('')">
+                  <mat-icon>close</mat-icon>
+                </button>
+              </mat-form-field>
+            </div>
+            <div>
+              <mat-form-field appearance="outline" class="no-padding">
+                  <mat-label>Agent</mat-label>
+                  <mat-select placeholder="Agent" name="item" [value]="agentSelected" (selectionChange)="filteByAgent($event.value)">
+                      <mat-option>Any</mat-option>
+                      <mat-option *ngFor="let item of agents" [value]="item.id">
+                          {{item.fullName}}
+                      </mat-option>
+                  </mat-select>
+              </mat-form-field>
+            </div>
+            <div>
+              <mat-button-toggle-group #group="matButtonToggleGroup" value="Leasing" class="full-width margin-botton">
+                <mat-button-toggle value="Leasing" aria-label="Text align center" (click)="displayCol('Leasing')">
+                  Leasing
+                </mat-button-toggle>
+                <mat-button-toggle value="Listing" aria-label="Text align center" (click)="displayCol('Listing')">
+                  Listing
+                </mat-button-toggle>
+                <mat-button-toggle value="Buying" aria-label="Text align center" (click)="displayCol('Buying')">
+                  Buying
+                </mat-button-toggle>
+              </mat-button-toggle-group>
+            </div>
+          </div>
+    </mat-card>
+
+    <div class="mat-elevation-z2">
+        <table mat-table [dataSource]="dataSource" matSort>
+    
+          <ng-container matColumnDef="address">
+            <th mat-header-cell *matHeaderCellDef> Address </th>
+            <td mat-cell *matCellDef="let row" style="width: 15%;">
+              <div fxLayout="row" fxLayoutAlign="start center">
+                  {{row.address}}
+              </div>
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="agent">
+            <th mat-header-cell *matHeaderCellDef> Agent </th>
+            <td mat-cell *matCellDef="let row" style="width: 15%;">
+              <div fxLayout="row" fxLayoutAlign="start center">
+                  {{row.agent.fullName}}
+              </div>
+            </td>
+          </ng-container>
+    
+          <ng-container matColumnDef="createdAt">
+            <th mat-header-cell *matHeaderCellDef> Date </th>
+            <td mat-cell *matCellDef="let row" style="width: 8%;">
+              <div fxLayout="row" fxLayoutAlign="start center">
+                  {{row.createdAt | date:'shortDate' }}
+              </div>
+            </td>
+          </ng-container>
+    
+          <ng-container matColumnDef="applicationType">
+            <th mat-header-cell *matHeaderCellDef> Type </th>
+            <td mat-cell *matCellDef="let row" style="width: 8%;">
+              <div fxLayout="row" fxLayoutAlign="start center">
+                {{row.applicationType}}
+              </div>
+            </td>
+          </ng-container>
+    
+          <ng-container matColumnDef="price">
+              <th mat-header-cell *matHeaderCellDef> Price </th>
+              <td mat-cell *matCellDef="let row" style="width: 8%;">
+                <div fxLayout="row" fxLayoutAlign="start center">
+                    ${{row.price | number }}
+                </div>
+              </td>
+            </ng-container>
+    
+            <ng-container matColumnDef="offerOut">
+              <th mat-header-cell *matHeaderCellDef>Offer Out </th>
+              <td mat-cell *matCellDef="let row" style="width: 8%;">
+                  <mat-checkbox [(ngModel)]="row.offerOut" color="primary" [disabled]="!editing.includes(row.id)" (click)="updateApp(row, 'offerOut')"></mat-checkbox>
+              </td>
+            </ng-container>
+    
+            <ng-container matColumnDef="listingAgreement">
+              <th mat-header-cell *matHeaderCellDef>Listing <br> Agreement </th>
+              <td mat-cell *matCellDef="let row" style="width: 8%;">
+                <mat-checkbox [(ngModel)]="row.listingAgreement" color="primary" [disabled]="!editing.includes(row.id)" (click)="updateApp(row, 'listingAgreement')"></mat-checkbox>
+              </td>
+            </ng-container>
+    
+            <ng-container matColumnDef="offerExecuted">
+              <th mat-header-cell *matHeaderCellDef>Offer <br> Executed </th>
+              <td mat-cell *matCellDef="let row" style="width: 8%;">
+                  <mat-checkbox [(ngModel)]="row.offerExecuted" color="primary" [disabled]="!editing.includes(row.id)" (click)="updateApp(row, 'offerExecuted')"></mat-checkbox>
+              </td>
+            </ng-container>
+    
+            <ng-container matColumnDef="closed">
+              <th mat-header-cell *matHeaderCellDef>Closed </th>
+              <td mat-cell *matCellDef="let row" style="width: 8%;">
+                <mat-checkbox [(ngModel)]="row.closed" color="primary" [disabled]="!editing.includes(row.id)" (click)="updateApp(row, 'closed')"></mat-checkbox>
+              </td>
+            </ng-container>
+    
+          <ng-container matColumnDef="moneyIn">
+            <th mat-header-cell *matHeaderCellDef>Money In </th>
+            <td mat-cell *matCellDef="let row" style="width: 8%;">
+                <mat-checkbox [(ngModel)]="row.moneyIn" color="primary" [disabled]="!editing.includes(row.id)" (click)="updateApp(row, 'moneyIn')"></mat-checkbox>
+            </td>
+          </ng-container>
+    
+          <ng-container matColumnDef="approved">
+            <th mat-header-cell *matHeaderCellDef>Approved </th>
+            <td mat-cell *matCellDef="let row" style="width: 8%;">
+              <mat-checkbox [(ngModel)]="row.approved" color="primary" [disabled]="!editing.includes(row.id)" (click)="updateApp(row, 'approved')"></mat-checkbox>
+            </td>
+          </ng-container>
+    
+            <ng-container matColumnDef="denied">
+                <th mat-header-cell *matHeaderCellDef>Denied </th>
+                <td mat-cell *matCellDef="let row" style="width: 8%;">
+                  <mat-checkbox [(ngModel)]="row.denied" color="primary" [disabled]="!editing.includes(row.id)" (click)="updateApp(row, 'denied')"></mat-checkbox>
+                </td>
+              </ng-container>
+
+              <ng-container matColumnDef="invoiceOut">
+                <th mat-header-cell *matHeaderCellDef>Invoice Out </th>
+                <td mat-cell *matCellDef="let row" style="width: 8%;">
+                  <mat-checkbox [(ngModel)]="row.invoiceOut" color="primary" [disabled]="!editing.includes(row.id)" (click)="updateApp(row, 'invoiceOut')"></mat-checkbox>
+                </td>
+              </ng-container>
+
+              <ng-container matColumnDef="invoicePaid">
+                <th mat-header-cell *matHeaderCellDef>Invoice Paid </th>
+                <td mat-cell *matCellDef="let row" style="width: 8%;">
+                  <mat-checkbox [(ngModel)]="row.invoicePaid" color="primary" [disabled]="!editing.includes(row.id)" (click)="updateApp(row, 'invoicePaid')"></mat-checkbox>
+                </td>
+              </ng-container>
+
+              <ng-container matColumnDef="paid">
+                <th mat-header-cell *matHeaderCellDef>Paid </th>
+                <td mat-cell *matCellDef="let row" style="width: 8%;">
+                  <mat-checkbox [(ngModel)]="row.paid" color="primary" [disabled]="!editing.includes(row.id)" (click)="updateApp(row, 'paid')"></mat-checkbox>
+                </td>
+              </ng-container>
+
+              <ng-container matColumnDef="edit">
+                <th mat-header-cell *matHeaderCellDef> </th>
+                <td mat-cell *matCellDef="let row" style="width: 5%;">
+                  <button mat-icon-button *ngIf="!editing.includes(row.id)" (click)="edit(row.id)" ><mat-icon>edit</mat-icon></button>
+                  <button mat-icon-button *ngIf="editing.includes(row.id)" (click)="save(row.id)"><mat-icon>save</mat-icon></button>
+                  <!-- <button mat-icon-button *ngIf="editing.includes(row.id)" (click)="edit(row.id)"><mat-icon>delete</mat-icon></button> -->
+                </td>
+              </ng-container>
+    
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;">
+          </tr>
+        </table>
+    
+        <mat-paginator [length]="totalPages"
+                  [pageSize]="10"
+                  [pageSizeOptions]="[5, 10, 25, 100]"
+                  (page)="paginator($event)">
+        </mat-paginator>
+      </div>
+    
+    </div>

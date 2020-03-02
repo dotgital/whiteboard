@@ -1,0 +1,9 @@
+<mat-progress-bar mode="indeterminate" *ngIf="loading" class="modal-loading" color="warn"></mat-progress-bar>
+<form (ngSubmit)="onSubmit()" #form="ngForm">
+    <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Message</mat-label>
+        <input matInput [(ngModel)]="message" name="message">
+      </mat-form-field>
+    <button mat-flat-button color="primary">Save</button>
+    <a mat-stroked-button (click)="onNoClick()" color="primary" style="margin-left: 10px;">Cancel</a>
+</form>

@@ -1,0 +1,175 @@
+/* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.mat-toolbar.mat-primary.mat-toolbar-single-row{
+  z-index: 100 !important;
+}
+
+.loading-top.mat-progress-bar{
+  position: absolute;
+}
+/* You can add global styles to this file, and also import other style files */
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+@import "../src/custom-theme.scss";
+@import "~@fortawesome/fontawesome-free/css/all.css";
+
+.ng2-pdf-viewer-container{
+    overflow-x: initial !important;
+}
+
+.page {
+  background: #fff;
+  box-shadow: 0 0 7px rgba(0, 0, 0, .14), 0 7px 8px rgba(0, 0, 0, .28) !important;
+}
+
+.mat-sidenav-content{
+  background: #e2e2e2;
+}
+
+.textLayer{
+  opacity: 0 !important;
+}
+
+button {
+    outline: none !important;
+
+    &[mat-fab] {
+        position: fixed;
+        bottom: 2rem;
+        right: 2rem;
+    }
+}
+
+.mat-mini-fab.mat-accent {
+    position: fixed;
+    bottom: 6rem;
+    right: 2.5rem;
+}
+
+// .mat-checkbox .mat-checkbox-frame {
+//   border-color: transparent;
+// }
+
+// .mat-checkbox-background{
+//   background: #0000
+// }
+// .mat-checkbox-checkmark-path {
+//   stroke: #ffffff !important;
+// }
+
+input[type=radio] {
+  box-sizing: border-box;
+  appearance: none;
+  background: white;
+  cursor: pointer;
+  // outline: 2px solid #333;
+  // border: 3px solid white;
+  // width: 16px;
+  // height: 16px;
+}
+
+input[type=radio]:checked{
+  // box-sizing: border-box;
+  appearance: none;
+  background: url('./assets/checked_bg.jpg') no-repeat !important;
+  background-position: 1px 0px !important;
+  background-size: 90% !important;
+}
+
+input[type=checkbox] {
+  box-sizing: border-box;
+  appearance: none;
+  background: white;
+  cursor: pointer;
+  margin: 0px !important;
+  // outline: 2px solid #333;
+  // border: 3px solid white;
+  // width: 16px;
+  // height: 16px;
+}
+
+input[type=checkbox]:checked{
+  // box-sizing: border-box;
+  appearance: none;
+  background: url('./assets/checked_bg.jpg') no-repeat !important;
+  background-position: 1px 1px !important;
+  background-size: 90% !important;
+  margin: 0px !important;
+}
+
+input{
+  font-family: 'Courier New', Courier, monospace;
+  // font-weight: bold;
+}
+
+.comb{
+  padding-left: 3px;
+  font-family: 'Courier New', Courier, monospace;
+  // font-weight: bold;
+}
+.zoom_1 .comb{
+  padding-left: 3px;
+}
+
+.zoom_1\.25 .comb{
+  padding-left: 5px !important;
+}
+.zoom_1\.50 .comb{
+  padding-left: 8px !important;
+}
+
+::-webkit-inner-spin-button { display: none; }
+
+.avatar_sm{
+  max-width: 30px;
+  max-height: 30px;
+  min-width: 30px;
+  min-height: 30px;
+  border-radius: 20px;
+  margin-right: 10px;
+}
+
+.avatar_smm{
+  // max-width: 40px;
+  // max-height: 40px;
+  // min-width: 40px;
+  // min-height: 40px;
+  // border-radius: 20px;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: 1px solid #eaeaea;
+}
+
+.avatar_md{
+  min-width: 70px;
+  min-height: 70px;
+  max-width: 70px;
+  max-height: 70px;
+  border-radius: 50px;
+  cursor: pointer;
+}
+
+.avatar_lg{
+  max-width: 120px;
+  max-height: 120px;
+  min-width: 120px;
+  min-height: 120px;
+  border-radius: 70px;
+}
+
+
+.whiteboard-message .mat-form-field-wrapper{
+  padding-bottom: 0px !important;
+}
+
+.no-padding div.mat-form-field-wrapper{
+  padding: 0em !important;
+}
+
+.bk-gradient{
+  background: linear-gradient(60deg, #288c62, #50a280);
+  color: #fff;
+}

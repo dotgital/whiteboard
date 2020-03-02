@@ -1,0 +1,156 @@
+
+<mat-progress-bar mode="indeterminate" *ngIf="loading" class="loading-top"></mat-progress-bar>
+<div class="content">
+  <div fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="10px">
+    <mat-form-field appearance="outline" fxFlex="80%" fxFlexFill>
+      <mat-label>Filter</mat-label>
+      <input matInput (keyup)="applyFilter($event.target.value)">
+    </mat-form-field>
+    <mat-form-field appearance="outline" fxFlex="10%" fxFlexFill>
+        <mat-label>Month</mat-label>
+        <mat-select [(ngModel)]="selectedMonth" name="item" (selectionChange)="changeMonth($event)">
+          <mat-option *ngFor="let item of months" [value]="item.value">
+            {{item.value}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    <mat-form-field appearance="outline" fxFlex="10%" fxFlexFill>
+        <mat-label>Year</mat-label>
+        <mat-select [(ngModel)]="selectedYear" name="item" (selectionChange)="changeYear($event)">
+          <mat-option *ngFor="let item of years" [value]="item.value">
+            {{item.value}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    <!-- <button mat-flat-button color="primary" class="fat-btn" (click)="addUser()">New Application</button> -->
+  </div>
+
+  <div class="mat-elevation-z8">
+    <table mat-table [dataSource]="dataSource" matSort>
+
+      <ng-container matColumnDef="address">
+        <th mat-header-cell *matHeaderCellDef> Address </th>
+        <td mat-cell *matCellDef="let row" style="width: 15%;">
+          <div fxLayout="row" fxLayoutAlign="start center">
+              {{row.address}}
+          </div>
+        </td>
+      </ng-container>
+
+        <ng-container matColumnDef="createDate">
+          <th mat-header-cell *matHeaderCellDef> Date </th>
+          <td mat-cell *matCellDef="let row" style="width: 15%;">
+            <div fxLayout="row" fxLayoutAlign="start center">
+                {{row.createDate}}
+            </div>
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="createBy">
+          <th mat-header-cell *matHeaderCellDef> Agent </th>
+          <td mat-cell *matCellDef="let row" style="width: 15%;">
+            <div fxLayout="row" fxLayoutAlign="start center">
+                {{row.createBy}}
+            </div>
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="saleType">
+          <th mat-header-cell *matHeaderCellDef> Type </th>
+          <td mat-cell *matCellDef="let row" style="width: 8%;">
+            <div fxLayout="row" fxLayoutAlign="start center">
+              <span *ngIf="row.appType != 'Sale'">Lease</span>
+              <span *ngIf="row.appType == 'Sale'">{{row.saleType}}</span>
+            </div>
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="price">
+            <th mat-header-cell *matHeaderCellDef> Price </th>
+            <td mat-cell *matCellDef="let row" style="width: 15%;">
+              <div fxLayout="row" fxLayoutAlign="start center">
+                  ${{row.price}}
+              </div>
+            </td>
+          </ng-container>
+
+
+          <ng-container matColumnDef="offerOut">
+            <th mat-header-cell *matHeaderCellDef>Offer Out </th>
+            <td mat-cell *matCellDef="let row" style="width: 8%;">
+                <mat-checkbox [(ngModel)]="row.offerOut" color="primary" (click)="updateApp(row, 'offerOut')"  *ngIf="row.appType == 'Sale' && row.saleType != 'Listing'"></mat-checkbox>
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="listingAgreement">
+            <th mat-header-cell *matHeaderCellDef>Listing <br> Agreement </th>
+            <td mat-cell *matCellDef="let row" style="width: 8%;">
+              <mat-checkbox [(ngModel)]="row.listingAgreement" color="primary" (click)="updateApp(row, 'listingAgreement')"  *ngIf="row.appType == 'Sale' && row.saleType == 'Listing'"></mat-checkbox>
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="offerExecuted">
+            <th mat-header-cell *matHeaderCellDef>Offer <br> Executed </th>
+            <td mat-cell *matCellDef="let row" style="width: 8%;">
+                <mat-checkbox [(ngModel)]="row.offerExecuted" color="primary" (click)="updateApp(row, 'offerExecuted')" *ngIf="row.appType == 'Sale'"></mat-checkbox>
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="closed">
+            <th mat-header-cell *matHeaderCellDef>Closed </th>
+            <td mat-cell *matCellDef="let row" style="width: 8%;">
+              <mat-checkbox [(ngModel)]="row.closed" color="primary" (click)="updateApp(row, 'closed')" *ngIf="row.appType == 'Sale'"></mat-checkbox>
+            </td>
+          </ng-container>
+
+      <ng-container matColumnDef="moneyIn">
+        <th mat-header-cell *matHeaderCellDef>Money In </th>
+        <td mat-cell *matCellDef="let row" style="width: 15%;">
+            <mat-checkbox [(ngModel)]="row.moneyIn" color="primary" (click)="updateApp(row, 'moneyIn')"  *ngIf="row.appType != 'Sale'"></mat-checkbox>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="approved">
+        <th mat-header-cell *matHeaderCellDef>Approved </th>
+        <td mat-cell *matCellDef="let row">
+          <mat-checkbox [(ngModel)]="row.approved" color="primary" (click)="updateApp(row, 'approved')"  *ngIf="row.appType != 'Sale'"></mat-checkbox>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="denied">
+        <th mat-header-cell *matHeaderCellDef>Denied </th>
+        <td mat-cell *matCellDef="let row">
+          <mat-checkbox [(ngModel)]="row.denied" color="primary" (click)="updateApp(row, 'denied')" *ngIf="row.appType != 'Sale'"></mat-checkbox>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="invoiceOut">
+          <th mat-header-cell *matHeaderCellDef>Invoice Out </th>
+          <td mat-cell *matCellDef="let row" style="width: 15%;">
+            <mat-checkbox [(ngModel)]="row.invoiceOut" color="primary" (click)="updateApp(row, 'invoiceOut')"></mat-checkbox>
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="invoicePaid">
+          <th mat-header-cell *matHeaderCellDef>Invoice <br> Paid </th>
+          <td mat-cell *matCellDef="let row">
+            <mat-checkbox [(ngModel)]="row.invoicePaid" color="primary" (click)="updateApp(row, 'invoicePaid')"></mat-checkbox>
+          </td>
+        </ng-container>
+
+          <ng-container matColumnDef="completed">
+              <th mat-header-cell *matHeaderCellDef>Paid </th>
+              <td mat-cell *matCellDef="let row">
+                <mat-checkbox [(ngModel)]="row.completed" color="primary" (click)="updateApp(row, 'completed')"></mat-checkbox>
+              </td>
+            </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;">
+      </tr>
+    </table>
+
+    <!-- <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator> -->
+  </div>
+
+</div>

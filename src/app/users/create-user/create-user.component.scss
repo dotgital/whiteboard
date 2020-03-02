@@ -1,0 +1,24 @@
+.full-width{
+  width: 100%;
+}
+.margin-botton{
+  margin: 10px 0px 5px;
+}
+.mat-dialog-content{
+  overflow:  hidden;
+}
+
+.image-upload > input {
+  display: none;
+}
+
+.modal-loading{
+  top: -25px;
+  height: 5px;
+  left: -20px;
+  width: calc(100% + 40px);
+}
+
+.slide-toggle{
+  margin: 5px 0px;
+}

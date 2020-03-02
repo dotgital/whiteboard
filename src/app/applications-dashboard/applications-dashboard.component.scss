@@ -1,0 +1,152 @@
+.mat-card{
+  margin: 5px 0px;
+  padding: 5px;
+}
+h4.address{
+  // float: left;
+  margin: 0px 5px 0px 0px;
+  color: #4c4c4c;
+}
+span.create-by{
+  font-size: 0.8em;
+  color: #4c4c4c;
+}
+
+div.avatar-container{
+  padding-top: 5px;
+}
+
+.apps-item .create-by.top{
+  font-size: 0.8em;
+  color: #4c4c4c;
+  background: red;
+}
+.status-container{
+  margin: 5px 0px;
+}
+.status-container .apps-status{
+  font-size: 0.5em;
+  padding: 2px 5px 0px 8px;
+  margin-right: 5px;
+  float: left;
+  text-transform: uppercase;
+  color: #ffffff;
+  background: linear-gradient(60deg, #2d2d2d, #4a4a4a);
+}
+
+.status-container .status-,
+.status-container .status-false{
+  display: none;
+}
+
+.status-container .mat-icon{
+  font-size: 16px;
+  vertical-align: middle;
+  /* line-height: 16px; */
+  height: 18px;
+  width: 16px;
+}
+
+// .top-agent{
+//   background: red;
+//   color: #fff;
+//   float: right;
+//   font-size: 0.6em;
+//   padding: 3px;
+//   border-radius: 5px;
+//   margin: 3px 15px 0px 0px;
+// }
+
+.top-agent-star{
+  background: red;
+  color: #ffffff;
+  border-radius: 50%;
+  position: absolute;
+  text-align: center;
+  height: 25px;
+  width: 25px;
+  top: 40px;
+  left: 35px;
+}
+
+// .apps-pager{
+//   position: absolute;
+//   z-index: 1000;
+//   top: 0px;
+//   height: 65px;
+//   width: 7%;
+//   margin-left: 46%;
+//   margin-right: 45%;
+//   color: #fff;
+// }
+
+// .apps-pager mat-select *{
+//   color: #fff !important;
+// }
+
+// .close-apps{
+//   line-height: 1;
+//   height: 20px;
+//   width: 20px;
+//   position: absolute;
+//   right: 3px;
+//   top: 0px;
+// }
+// .close-apps mat-icon{
+//   font-weight: bold;
+//   color: #444444;
+// }
+
+.whiteboard-message{
+  position: fixed;
+  bottom: 0px;
+  background: #000;
+  // width: calc( 100% - 20px );
+  // margin: 10px;
+  // background: #00000042;
+  // color: #ffffff;
+  // font-size: 22px;
+}
+
+.message-space{
+  height: 65px;
+  // background: #000;
+}
+
+.whiteboard-message mat-icon{
+  // font-size: 28px !important;
+  // position: relative;
+  // top: -5px;
+  // left: -5px;
+  color: #636363;
+}
+
+.whiteboard-message-text{
+  text-align: center;
+  width: 100%;
+  color: #fff;
+}
+
+// .field-container{
+//   width: 97%;
+// }
+
+// .mat-form-field {
+//   font-size: 14px;
+//   width: 100%;
+// }
+
+#full-screen,
+.full-screen{
+  background: #e2e2e2;
+}
+
+.mat-sidenav-content{
+  background: #e2e2e2;
+}
+
+.mat-mini-fab{
+  z-index: 1;
+  bottom: 2.9rem;
+  background: linear-gradient(60deg,#288c6c,#4ea752);
+}

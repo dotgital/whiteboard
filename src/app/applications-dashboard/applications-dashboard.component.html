@@ -1,0 +1,59 @@
+<div class="full-screen">
+  <content id="full-screen">
+  <button mat-mini-fab (click)="openFullScreen()"><mat-icon>{{ !fullScreen ? 'fullscreen' : 'fullscreen_exit'}}</mat-icon></button>
+  <div fxLayout="row wrap" fxLayoutAlign="space-evenly stretch" class="wrapper">
+    <ng-container *ngFor="let item of apps">
+      <mat-card 
+      fxFlex="0 1 calc(25% - 10px)"
+      fxFlex.lt-lg="0 1 calc(33.3% - 10px)"
+      fxFlex.lt-md="0 1 calc(50% - 10px)"
+      fxFlex.lt-sm="0 1 calc(100% - 10px)">
+        <div
+        gdAreas="avatar content"
+        gdGap="5px"
+        gdRows="auto"
+        gdColumns="55px auto">
+        <div gdArea="avatar" class="avatar-container">
+          <img class="avatar_smm" src="https://backend.apartmentsource.com/{{item.agent.avatar['0'].url}}" *ngIf="item.agent.avatar['0'] && item.agent.avatar['0'].url" />
+          <img class="avatar_smm" src="'../../../../assets/avatar.svg" *ngIf="!item.agent.avatar['0']" />
+          <mat-icon *ngIf="item.agent.id == topAgent" class="top-agent-star">grade</mat-icon>
+        </div>
+        <div gdArea="content">
+          <h4 class="address">{{ item.address }}</h4><span class="create-by"> {{ item.agent.fullName }} - {{ item.createdAt | date:"MM/dd/yyyy" }}</span> <br />
+
+          <div class="status-container">
+            <span class="status-{{ item.offerOut }} apps-status">Offer Out <mat-icon class="material-icons md-24">done</mat-icon></span>
+            <span class="status-{{ item.listingAgreement }} apps-status">List Agr <mat-icon class="material-icons md-24">done</mat-icon></span>
+            <span class="status-{{ item.offerExecuted }} apps-status">Offer Exec <mat-icon class="material-icons md-24">done</mat-icon></span>
+            <span class="status-{{ item.closed }} apps-status">Closed <mat-icon class="material-icons md-24">done</mat-icon></span>
+            <span class="status-{{ item.moneyIn }} apps-status">Money In <mat-icon class="material-icons md-24">done</mat-icon></span>
+            <span class="status-{{ item.approved }} apps-status">Approved <mat-icon class="material-icons md-24">done</mat-icon></span>
+            <span class="status-{{ item.denied }} apps-status">Denied <mat-icon class="material-icons md-24">done</mat-icon></span>
+            <span class="status-{{ item.invoiceOut }} apps-status">Invoice Out <mat-icon class="material-icons md-24">done</mat-icon></span>
+            <span class="status-{{ item.invoicePaid }} apps-status">Invoice Paid <mat-icon class="material-icons md-24">done</mat-icon></span>
+          </div>
+        </div>
+      </div>
+      </mat-card>
+    </ng-container>
+  </div>
+  <div class="message-space"></div>
+  <mat-toolbar class="whiteboard-message apps-item mat-elevation-z3">
+    <!-- <div class="field-container" *ngIf="loggedUser && loggedUser.isAdmin" >
+        <mat-form-field appearance="outline">
+          <mat-label>Message</mat-label>
+          <input matInput [(ngModel)]="message">
+        </mat-form-field>
+        <button mat-icon-button color="primary" (click)="saveMessage(message)" >
+          <mat-icon>save</mat-icon>
+        </button>
+    </div> -->
+    <span class="whiteboard-message-text">{{message}}
+      <button mat-icon-button (click)="editMessage()" *ngIf="user.user.role.name == 'Administrator'">
+        <mat-icon>edit</mat-icon>
+      </button>
+    </span>
+  </mat-toolbar>
+</content>
+</div>
+

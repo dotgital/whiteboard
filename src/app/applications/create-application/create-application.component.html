@@ -1,0 +1,76 @@
+<mat-progress-bar mode="indeterminate" *ngIf="loading" class="modal-loading"></mat-progress-bar>
+<form [formGroup]="createApplicationForm" (ngSubmit)="createApplication()">
+
+  <div fxLayout="row" fxLayoutAlign="center center">
+    <h1 mat-dialog-title>Submit a new application</h1>
+  </div>
+
+<div mat-dialog-content>
+
+  <mat-button-toggle-group #group="matButtonToggleGroup" [value]="appType" class="full-width margin-botton">
+    <mat-button-toggle value="Leasing" aria-label="Text align center" (click)="appType = 'Leasing'">
+      Leasing
+    </mat-button-toggle>
+    <mat-button-toggle value="Listing" aria-label="Text align center" (click)="appType = 'Listing'">
+      Listing 
+    </mat-button-toggle>
+    <mat-button-toggle value="Buying" aria-label="Text align center" (click)="appType = 'Buying'">
+      Buying
+    </mat-button-toggle>
+  </mat-button-toggle-group>
+  <!-- <div class="example-selected-value">Selected value: {{group.value}}</div> -->
+  <!-- <div *ngIf="group.value == 'Sales'">
+    <mat-radio-group class="full-width" value="Listing">
+      <mat-radio-button value="Listing" class="margin" (click)="saleType = 'Listing'">Listing</mat-radio-button>
+      <mat-radio-button value="Buying" class="margin" (click)="saleType = 'Buying'">Buying</mat-radio-button>
+    </mat-radio-group>
+  </div> -->
+
+    <mat-form-field class="full-width">
+        <mat-label>Address</mat-label>
+        <input matInput formControlName="address">
+        <mat-icon matSuffix>name</mat-icon>
+        <mat-error *ngIf="createApplicationForm.controls['address'].errors && createApplicationForm.controls['address'].errors.required">Required</mat-error>
+      </mat-form-field>
+      <div fxLayout="column" fxLayoutAlign="start start" fxLayoutGap="10px">
+          <mat-form-field>
+              <mat-label>Price</mat-label>
+              <span matPrefix>$ &nbsp;</span>
+              <input type="number" matInput formControlName="price">
+            </mat-form-field>
+        <div *ngIf="appType == 'Leasing'">
+          <mat-checkbox color="primary" formControlName="moneyIn">Money In</mat-checkbox><br>
+          <mat-checkbox color="primary" formControlName="approved">Approved</mat-checkbox><br>
+          <mat-checkbox color="primary" formControlName="denied">Denied</mat-checkbox>
+        </div>
+        <div *ngIf="appType == 'Listing'">
+          <mat-checkbox color="primary" formControlName="listingAgreement">Listing Agreement</mat-checkbox><br>
+          <mat-checkbox color="primary" formControlName="offerExecuted">Offer Executed</mat-checkbox><br>
+          <mat-checkbox color="primary" formControlName="closed">Closed</mat-checkbox>
+        </div>
+        <div *ngIf="appType == 'Buying'">
+          <mat-checkbox color="primary" formControlName="offerOut">Offer out</mat-checkbox><br>
+          <mat-checkbox color="primary" formControlName="offerExecuted">Offer Executed</mat-checkbox><br>
+          <mat-checkbox color="primary" formControlName="closed">Closed</mat-checkbox>
+        </div>
+          <!-- <mat-checkbox color="primary" formControlName="invoiceOut">Invoice Out</mat-checkbox>
+          <mat-checkbox color="primary" formControlName="invoicePaid">Invoice Paid</mat-checkbox> -->
+      </div>
+</div>
+
+  <div mat-dialog-actions fxLayout="row" fxLayoutGap="20px" fxLayoutAlign="space-evenly center" class="margin-botton">
+      <button mat-flat-button color="primary" [disabled]="!createApplicationForm.valid" fxFlex>Create
+
+      </button>
+      <a mat-stroked-button (click)="onNoClick()" color="primary" fxFlex>Cancel</a>
+      <!-- <button mat-button [mat-dialog-close]="data" cdkFocusInitial>Ok</button> -->
+  </div>
+</form>
+<!-- <div class="loading-spinner">
+    <mat-progress-spinner
+    class="example-margin"
+    color="white"
+    mode="indeterminate"
+    value="50">
+    </mat-progress-spinner>
+</div> -->

@@ -1,0 +1,25 @@
+<div class="content">
+    <div fxLayout="row wrap" fxLayoutAlign="start stretch" fxLayoutGap="20px">
+  <div *ngFor="let item of stats" fxFlex="23" class="card-33" fxFill>
+    <mat-card class="mat-elevation-z4 margin-bottom">
+      <div fxLayout="row" fxLayoutGap="20px">
+        <div>
+            <img class="avatar_lg" src="{{item.statsData.avatar}}" *ngIf="item.statsData.avatar" />
+            <img class="avatar_lg" src="'../../../../assets/avatar.svg" *ngIf="!item.statsData.avatar" />
+        </div>
+        <div class="statistics">
+          <h3>{{item.createBy}}</h3>
+          <span> Applications: {{item.statsData.app}} </span> <br/>
+          <span>Money In: {{item.statsData.moneyIn}}</span><br/>
+          <span>Approved: {{item.statsData.approved}}</span><br/>
+          <span>Invoice Out: {{item.statsData.invoiceOut}}</span> <br/>
+          <span>Incoice Paid: {{item.statsData.invoicePaid}}</span><br/>
+          <span>Denied: {{item.statsData.denied}}</span><br>
+          <span>Price: {{item.statsData.price}}</span>
+        </div>
+      </div>
+    </mat-card>
+  </div>
+    </div>
+</div>
+

@@ -1,0 +1,75 @@
+<mat-progress-bar mode="indeterminate" *ngIf="loading" class="modal-loading"></mat-progress-bar>
+  <form #avatarUpload (ngSubmit)="uploadAvatar()" >
+  <div fxLayout="row" fxLayoutAlign="center center">
+      <div class="image-upload">
+          <label for="file-input">
+              <img class="avatar_md" [src]="imageSrc || '../../../assets/avatar.svg'" alt="your image" />
+          </label>
+          <input id="file-input" #avatarInput type='file' (change)="preview($event.target.files);"/>
+          <!-- <input hidden id="file-input" type='file' (change)="preview($event);" formControlName="avatar" value=''/> -->
+      </div>
+  </div>
+  <!-- <input type="submit" value="upload"> -->
+  <div fxLayout="row" fxLayoutAlign="center center">
+    <h1 mat-dialog-title>{{ update ? 'Update this User' : 'Create a new User'}}</h1>
+  </div>
+</form>
+<form [formGroup]="createUserForm" (ngSubmit)="createUser()">
+<div mat-dialog-content>
+    <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Name</mat-label>
+        <input matInput formControlName="fullName">
+        <mat-icon matSuffix>name</mat-icon>
+        <mat-error *ngIf="createUserForm.controls['email'].errors && createUserForm.controls['email'].errors.required">Required</mat-error>
+      </mat-form-field>
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Email</mat-label>
+      <input matInput formControlName="email">
+      <mat-icon matSuffix>email</mat-icon>
+
+      <mat-error *ngIf="createUserForm.controls['email'].errors && createUserForm.controls['email'].errors.required">Required</mat-error>
+      <mat-error *ngIf="createUserForm.controls['email'].errors && !createUserForm.controls['email'].errors.required">Please type a valid email address</mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="outline" color="primary" class="full-width">
+      <mat-label>Password</mat-label>
+      <input matInput [type]="hide ? 'password' : 'text'" formControlName="password">
+      <a mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+        [attr.aria-pressed]="hide">
+        <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+      </a>
+      <mat-hint>Password should be at least 6 characters</mat-hint>
+      <mat-error *ngIf="createUserForm.controls['password'].errors && createUserForm.controls['password'].errors.required">Required</mat-error>
+      <mat-error *ngIf="createUserForm.controls['password'].errors && !createUserForm.controls['password'].errors.required">Password should be at least 6 characters
+        </mat-error>
+    </mat-form-field>
+    <div class="full-width">
+      <section class="slide-toggle">
+        <mat-slide-toggle formControlName="isAdmin" (change)="adminChanged = !adminChanged">
+            Administrator
+        </mat-slide-toggle>
+      </section>
+    </div>
+    <div class="full-width">
+      <section class="slide-togglen">
+        <mat-slide-toggle formControlName="isBloked" (change)="blokedChanged = !blokedChanged" >
+            Blocked
+        </mat-slide-toggle>
+      </section>
+    </div>
+
+</div>
+  <div mat-dialog-actions fxLayout="row" fxLayoutGap="20px" fxLayoutAlign="space-evenly center" class="margin-botton">
+      <button mat-flat-button color="primary" [disabled]="!createUserForm.valid" fxFlex *ngIf="!update" >Create</button>
+      <button mat-flat-button color="primary" [disabled]="!createUserForm.valid" fxFlex *ngIf="update" >Update</button>
+      <a mat-stroked-button (click)="onNoClick()" color="primary" fxFlex>Cancel</a>
+      <!-- <button mat-button [mat-dialog-close]="data" cdkFocusInitial>Ok</button> -->
+  </div>
+</form>
+<!-- <div class="loading-spinner">
+    <mat-progress-spinner
+    class="example-margin"
+    color="white"
+    mode="indeterminate"
+    value="50">
+    </mat-progress-spinner>
+</div> -->

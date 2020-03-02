@@ -1,0 +1,35 @@
+.content{
+  padding: 20px;
+}
+table {
+  width: 100%;
+}
+
+.mat-form-field {
+  font-size: 14px;
+  width: 100%;
+}
+
+td, th {
+  width: 5% !important;
+}
+.mat-column-createBy{
+  width: 9%  !important;
+}
+.mat-column-address{
+  width: 14%  !important;
+}
+// .mat-column-createDate{
+//   width: 8%  !important;
+// }
+
+.fat-btn{
+  margin: 4px 0px 0px;
+  height: 50px;
+}
+
+th{
+  font-weight: 900;
+  color: #000;
+  // font-size: 16px;
+}
