@@ -173,7 +173,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = "<div class=\"content\">\n    <div fxLayout=\"row wrap\" fxLayoutAlign=\"space-evenly stretch\">\n    <ng-container *ngFor=\"let item of stats\">\n        <mat-card class=\"mat-elevation-z4 margin-bottom\"\n        fxFlex.lg=\"0 1 calc(33.3% - 10px)\"\n        fxFlex.md=\"0 1 calc(50% - 10px)\"\n        fxFlex.sm=\"0 1 calc(100% - 10px)\">\n            <div>\n                <img class=\"avatar_lg\" src=\"https://backend.apartmentsource.com{{item.avatar}}\" *ngIf=\"item.avatar\" />\n                <img class=\"avatar_lg\" src=\"'../../../../assets/avatar.svg\" *ngIf=\"!item.avatar\" />\n            </div>\n            <div class=\"statistics\">\n            <h3>{{item.createBy}}</h3>\n            <span> Applications: {{item.applications}} </span> <br/>\n            <span>Money In: {{item.moneyIn}}</span><br/>\n            <span>Approved: {{item.approved}}</span><br/>\n            <span>Invoice Out: {{item.invoiceOut}}</span> <br/>\n            <span>Incoice Paid: {{item.invoicePaid}}</span><br/>\n            <!-- <span>Denied: {{item.denied}}</span><br> -->\n            <!-- <span>Price: {{item.price}}</span> -->\n            </div>\n            <mat-icon fontSet=\"fa\" fontIcon=\"fa-medal\"></mat-icon>\n\n        </mat-card>\n    </ng-container>\n    </div>\n</div>\n\n";
+    __webpack_exports__["default"] = "<div class=\"content\" style=\"padding: 5px;\">\n    <div fxLayout=\"row wrap\" fxLayoutAlign=\"space-evenly stretch\">\n        <ng-container *ngFor=\"let item of stats | keyvalue\">\n            <mat-card class=\"mat-elevation-z4 margin-bottom stats\" style=\"margin: 5px;\" fxFlex *ngIf=\"item.key < 3\" >\n                <div gdAreas=\"avatar content\" gdGap=\"5px\" gdRows=\"auto\" gdColumns=\"105px auto\">\n                    <div gdArea=\"avatar\" class=\"avatar-container\">\n                        <img class=\"avatar_lg\" src=\"https://backend.apartmentsource.com{{item.value.avatar}}\"\n                            *ngIf=\"item.value.avatar\" />\n                        <img class=\"avatar_lg\" src=\"'../../../../assets/avatar.svg\" *ngIf=\"!item.value.avatar\" />\n                    </div>\n                    <div gdArea=\"content\"  gdGap=\"5px\" gdAreas=\"header header | content content2\">\n                        <div gdArea=\"header\" style=\"border-bottom: 1px solid #d4d4d4\">\n                            <h3>{{item.value.name}}</h3>\n                            <span class=\"medal medal-{{item.key}}\">\n                                {{place(item.key)}}\n                                <mat-icon fontSet=\"fa\" fontIcon=\"fa-medal\"></mat-icon>\n                            </span>\n                        </div>\n                        <div gdArea=\"content\">\n                            <div class=\"statistics\">\n                                <span> Applications: </span> <span class=\"float-right\"> {{item.value.applications}} </span> <br />\n                                <span>Money In:  </span> <span class=\"float-right\">{{item.value.moneyIn}}</span><br />\n                                <span>Approved:  </span> <span class=\"float-right\">{{item.value.approved}}</span><br />\n                                <!-- <span>Denied: {{item.denied}}</span><br> -->\n                                <!-- <span>Price: {{item.price}}</span> -->\n                            </div>\n                        </div>\n                        <div gdArea=\"content2\">\n                            <div class=\"statistics\">\n                                <span> Price: </span> <span class=\"float-right\"> {{item.value.applications}} </span> <br />\n                                <span>Invoice Out: </span> <span class=\"float-right\"> {{item.value.invoiceOut}}</span> <br />\n                                <span>Incoice Paid:  </span> <span class=\"float-right\">{{item.value.invoicePaid}}</span><br />\n                                <!-- <span>Denied: {{item.denied}}</span><br> -->\n                                <!-- <span>Price: {{item.price}}</span> -->\n                            </div>\n                        </div>\n                    </div> \n                    \n                </div>\n            </mat-card>\n        </ng-container>\n    </div>\n    <div style=\"padding: 5px 10px;\">\n        <ng-container  *ngFor=\"let item of stats | keyvalue\">\n            <div fxLayout=\"row\" fxLayoutAlign=\"space-evenly stretch\" style=\"margin-bottom: 5px;\" *ngIf=\"item.key > 2\">\n                <div gdAreas=\"number avatar content\" gdGap=\"5px\" gdRows=\"auto\" gdColumns=\"20px 35px auto\"\n                class=\"mat-elevation-z4\" fxFill style=\"background: #fff; padding: 5px\">\n                    <div gdArea=\"number\" class=\"number\">\n                        {{place(item.key)}}\n                    </div>\n                    <div gdArea=\"avatar\" class=\"avatar-container\">\n                        <img class=\"avatar_sm\" src=\"https://backend.apartmentsource.com{{item.value.avatar}}\"\n                            *ngIf=\"item.value.avatar\" />\n                        <img class=\"avatar_sm\" src=\"'../../../../assets/avatar.svg\" *ngIf=\"!item.value.avatar\" />\n                    </div>\n                    <div gdArea=\"content\" class=\"content-table\">\n                        <div style=\"text-align: left;\"><b>{{item.value.name}}</b></div>\n                        <div>Applications: {{item.value.applications}} </div>\n                        <div>Money In: {{item.value.moneyIn}}</div>\n                        <div>Approved: {{item.value.approved}}</div>\n                        <div>Invoice Out: {{item.value.invoiceOut}}</div>\n                        <div>Incoice Paid: {{item.value.invoicePaid}}</div>\n                        <div>Price: {{item.value.applications}} </div>\n                    </div>\n                </div>\n            </div>\n        </ng-container>\n    </div>\n</div>";
     /***/
   },
 
@@ -413,7 +413,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = "\n<mat-progress-bar mode=\"indeterminate\" *ngIf=\"loading\" class=\"loading-top\"></mat-progress-bar>\n<div class=\"content\">\n  <mat-card style=\"padding: 5px 10px; margin-bottom: 10px; border-radius: 0px;\" class=\"mat-elevation-z1\">\n  <div fxLayout=\"row\" fxLayoutAlign=\"start start\" fxLayoutGap=\"10px\">\n    <mat-form-field appearance=\"outline\" class=\"no-padding\">\n      <mat-label>Filter</mat-label>\n      <input matInput (keyup)=\"applyFilter($event.target.value)\">\n    </mat-form-field>\n    <button mat-flat-button class=\"fat-btn bk-gradient\" (click)=\"addUser()\">Add User</button>\n  </div>\n</mat-card>\n  <div class=\"mat-elevation-z8\">\n    <table mat-table [dataSource]=\"dataSource\" matSort>\n\n      <!-- Name Column -->\n      <ng-container matColumnDef=\"fullName\">\n        <th mat-header-cell *matHeaderCellDef> Name </th>\n        <td mat-cell *matCellDef=\"let row\" style=\"width: 15%;\">\n          <div fxLayout=\"row\" fxLayoutAlign=\"start center\">\n              <img class=\"avatar_sm\" src=\"https://backend.apartmentsource.com{{row.avatar['0'].url}}\" *ngIf=\"row.avatar.length > 0 || !row.avatar == undefined\" />\n              <img class=\"avatar_sm\" src=\"'../../../../assets/avatar.svg\" *ngIf=\"row.avatar.length == 0\" />\n              {{row.fullName}}\n          </div>\n        </td>\n      </ng-container>\n\n      <!--Email Column -->\n      <ng-container matColumnDef=\"email\">\n        <th mat-header-cell *matHeaderCellDef>Email </th>\n        <td mat-cell *matCellDef=\"let row\" style=\"width: 15%;\">\n          {{row.email}}\n        </td>\n      </ng-container>\n\n      <!-- isAdmin Column -->\n      <ng-container matColumnDef=\"role\">\n        <th mat-header-cell *matHeaderCellDef>Admin </th>\n        <td mat-cell *matCellDef=\"let row\">\n          <mat-checkbox [ngModel]=\"row.role.name == 'Administrator' ? true : false\" color=\"primary\" disabled></mat-checkbox>\n        </td>\n      </ng-container>\n\n            <!-- isAdmin Column -->\n            <ng-container matColumnDef=\"blocked\">\n              <th mat-header-cell *matHeaderCellDef>Blocked </th>\n              <td mat-cell *matCellDef=\"let row\">\n                <mat-checkbox [ngModel]=\"row.blocked\" color=\"primary\" disabled></mat-checkbox>\n              </td>\n            </ng-container>\n\n      <!-- isAdmin Column -->\n      <ng-container matColumnDef=\"edit\" class=\"edit-table\">\n        <th mat-header-cell *matHeaderCellDef> </th>\n        <td mat-cell *matCellDef=\"let row\">\n          <button mat-icon-button (click)=\"updateUser(row)\"><mat-icon>edit</mat-icon></button>\n        </td>\n      </ng-container>\n\n      <tr mat-header-row *matHeaderRowDef=\"displayedColumns\"></tr>\n      <tr mat-row *matRowDef=\"let row; columns: displayedColumns;\">\n      </tr>\n    </table>\n\n    <mat-paginator [pageSizeOptions]=\"[5, 10, 20]\" showFirstLastButtons></mat-paginator>\n    <!-- <mat-paginator [pageSizeOptions]=\"[5, 10, 25, 100]\"></mat-paginator> -->\n  </div>\n\n</div>\n";
+    __webpack_exports__["default"] = "\n<mat-progress-bar mode=\"indeterminate\" *ngIf=\"loading\" class=\"loading-top\"></mat-progress-bar>\n<div class=\"content\">\n  <mat-card style=\"padding: 5px 10px; margin-bottom: 10px; border-radius: 0px;\" class=\"mat-elevation-z1\">\n  <div fxLayout=\"row\" fxLayoutAlign=\"start start\" fxLayoutGap=\"10px\">\n    <mat-form-field appearance=\"outline\" class=\"no-padding\">\n      <mat-label>Filter</mat-label>\n      <input matInput (keyup)=\"applyFilter($event.target.value)\">\n    </mat-form-field>\n    <button mat-flat-button class=\"fat-btn bk-gradient\" (click)=\"addUser()\">Add User</button>\n  </div>\n</mat-card>\n  <div class=\"mat-elevation-z8\">\n    <table mat-table [dataSource]=\"dataSource\" matSort>\n\n      <!-- Name Column -->\n      <ng-container matColumnDef=\"fullName\">\n        <th mat-header-cell *matHeaderCellDef> Name </th>\n        <td mat-cell *matCellDef=\"let row\" style=\"width: 15%;\">\n          <div fxLayout=\"row\" fxLayoutAlign=\"start center\">\n              <img class=\"avatar_sm\" src=\"https://backend.apartmentsource.com{{row.avatar['0'].url}}\" *ngIf=\"row.avatar.length > 0 || !row.avatar == undefined\" />\n              <img class=\"avatar_sm\" src=\"'../../../../assets/avatar.svg\" *ngIf=\"row.avatar.length == 0\" />\n              {{row.fullName}}\n          </div>\n        </td>\n      </ng-container>\n\n      <!--Email Column -->\n      <ng-container matColumnDef=\"email\">\n        <th mat-header-cell *matHeaderCellDef>Email </th>\n        <td mat-cell *matCellDef=\"let row\" style=\"width: 15%;\">\n          {{row.email}}\n        </td>\n      </ng-container>\n\n      <!-- isAdmin Column -->\n      <ng-container matColumnDef=\"role\">\n        <th mat-header-cell *matHeaderCellDef>Admin </th>\n        <td mat-cell *matCellDef=\"let row\">\n          <mat-checkbox [ngModel]=\"row.role.name == 'Administrator' ? true : false\" color=\"primary\" disabled></mat-checkbox>\n        </td>\n      </ng-container>\n\n            <!-- isAdmin Column -->\n            <ng-container matColumnDef=\"blocked\">\n              <th mat-header-cell *matHeaderCellDef>Blocked </th>\n              <td mat-cell *matCellDef=\"let row\">\n                <mat-checkbox [ngModel]=\"row.blocked\" color=\"primary\" disabled></mat-checkbox>\n              </td>\n            </ng-container>\n\n      <!-- isAdmin Column -->\n      <ng-container matColumnDef=\"edit\" class=\"edit-table\">\n        <th mat-header-cell *matHeaderCellDef> </th>\n        <td mat-cell *matCellDef=\"let row\">\n          <button mat-icon-button (click)=\"updateUser(row)\"><mat-icon>edit</mat-icon></button>\n        </td>\n      </ng-container>\n\n      <tr mat-header-row *matHeaderRowDef=\"displayedColumns\"></tr>\n      <tr mat-row *matRowDef=\"let row; columns: displayedColumns;\">\n      </tr>\n    </table>\n\n    <mat-paginator \n      [pageSize]=\"10\"\n      [pageSizeOptions]=\"[5, 10, 25, 100]\" \n      showFirstLastButtons></mat-paginator>\n    <!-- <mat-paginator [pageSizeOptions]=\"[5, 10, 25, 100]\"></mat-paginator> -->\n  </div>\n\n</div>\n";
     /***/
   },
 
@@ -2082,6 +2082,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
               _this6[method]();
             }
           });
+          this.getOldApps();
         }
       }, {
         key: "getApplications",
@@ -2161,6 +2162,39 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
               console.log(res);
             });
           });
+        }
+      }, {
+        key: "getOldApps",
+        value: function getOldApps() {
+          return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0,
+          /*#__PURE__*/
+          regeneratorRuntime.mark(function _callee() {
+            var _this11 = this;
+
+            return regeneratorRuntime.wrap(function _callee$(_context) {
+              while (1) {
+                switch (_context.prev = _context.next) {
+                  case 0:
+                    this.dataService.getAllApps().subscribe(function (res) {
+                      var oldApps = res;
+                      oldApps.forEach(function (el) {
+                        // console.log(el);
+                        var query = "query { users(where: {fullName_contains: \"".concat(el.createBy, "\"}) {id, fullName}}");
+
+                        _this11.dataService.getData(query).subscribe(function (resUser) {
+                          console.log(el);
+                          console.log(resUser.data.users["0"]);
+                        });
+                      });
+                    });
+
+                  case 1:
+                  case "end":
+                    return _context.stop();
+                }
+              }
+            }, _callee, this);
+          }));
         }
       }, {
         key: "ngOnDestroy",
@@ -2282,14 +2316,14 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       }, {
         key: "onSubmit",
         value: function onSubmit() {
-          var _this11 = this;
+          var _this12 = this;
 
           this.loading = true;
           var appData = "mutation {\n      updateStatic(input: {\n        where: {\n          id: \"5e5702eda23dfc62fc1bcf4d\"\n        },\n        data: {\n          whiteBoardMessage: \"".concat(this.message, "\"\n        }\n      }) {\n        static {\n          whiteBoardMessage\n        }\n      }\n    }");
           this.dataService.updateData(appData).subscribe(function (res) {
-            _this11.loading = false;
+            _this12.loading = false;
 
-            _this11.dialogRef.close(_this11.message);
+            _this12.dialogRef.close(_this12.message);
           });
         }
       }, {
@@ -2344,7 +2378,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL2FwcGxpY2F0aW9ucy1zdGF0cy9hcHBsaWNhdGlvbnMtc3RhdHMuY29tcG9uZW50LnNjc3MifQ== */";
+    __webpack_exports__["default"] = ".mat-card {\n  padding: 10px 10px;\n  margin: 5px 0px;\n}\n\n.stats .medal {\n  float: right;\n  font-size: 20px;\n  font-weight: bold;\n}\n\n.stats .medal .fa-medal {\n  font-size: 20px;\n  margin-left: -3px;\n}\n\n.stats .medal-0 {\n  color: goldenrod;\n}\n\n.stats .medal-1 {\n  color: silver;\n}\n\n.stats .medal-2 {\n  color: #cd7f32;\n}\n\n.float-right {\n  float: right;\n  margin-right: 10px;\n}\n\n.stats h3 {\n  margin: 5px 0px 0px;\n  float: left;\n}\n\n.stats span {\n  font-size: 0.8em;\n}\n\n.number {\n  font-size: 23px;\n  font-weight: bold;\n  margin: 2px 5px;\n  color: #7d7d7d;\n}\n\n.content-table div {\n  width: 14%;\n  float: left;\n  text-align: center;\n  border-left: 1px solid #d4d4d4;\n  margin-top: 7px;\n}\n\n.avatar_sm {\n  width: 35px;\n  height: 35px;\n  border-radius: 20px;\n  margin-top: 0px;\n  margin-bottom: -3px;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9Vc2Vycy9tYXJjZWwvUHJvamVjdHMvd2hpdGVib2FyZDIvc3JjL2FwcC9hcHBsaWNhdGlvbnMtc3RhdHMvYXBwbGljYXRpb25zLXN0YXRzLmNvbXBvbmVudC5zY3NzIiwic3JjL2FwcC9hcHBsaWNhdGlvbnMtc3RhdHMvYXBwbGljYXRpb25zLXN0YXRzLmNvbXBvbmVudC5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0ksa0JBQUE7RUFDQSxlQUFBO0FDQ0o7O0FERUE7RUFDSSxZQUFBO0VBQ0EsZUFBQTtFQUNBLGlCQUFBO0FDQ0o7O0FERUE7RUFDSSxlQUFBO0VBQ0EsaUJBQUE7QUNDSjs7QURFQTtFQUNJLGdCQUFBO0FDQ0o7O0FEQ0E7RUFDSSxhQUFBO0FDRUo7O0FEQUE7RUFDSSxjQUFBO0FDR0o7O0FEQUE7RUFDSSxZQUFBO0VBQ0Esa0JBQUE7QUNHSjs7QURBQTtFQUNJLG1CQUFBO0VBQ0EsV0FBQTtBQ0dKOztBREFBO0VBQ0ksZ0JBQUE7QUNHSjs7QURBQTtFQUNJLGVBQUE7RUFDQSxpQkFBQTtFQUNBLGVBQUE7RUFDQSxjQUFBO0FDR0o7O0FEQUE7RUFDSSxVQUFBO0VBQ0EsV0FBQTtFQUNBLGtCQUFBO0VBQ0EsOEJBQUE7RUFDQSxlQUFBO0FDR0o7O0FEQUE7RUFDSSxXQUFBO0VBQ0EsWUFBQTtFQUNBLG1CQUFBO0VBQ0EsZUFBQTtFQUNBLG1CQUFBO0FDR0oiLCJmaWxlIjoic3JjL2FwcC9hcHBsaWNhdGlvbnMtc3RhdHMvYXBwbGljYXRpb25zLXN0YXRzLmNvbXBvbmVudC5zY3NzIiwic291cmNlc0NvbnRlbnQiOlsiLm1hdC1jYXJke1xuICAgIHBhZGRpbmc6IDEwcHggMTBweDtcbiAgICBtYXJnaW46IDVweCAwcHg7XG59XG5cbi5zdGF0cyAubWVkYWx7XG4gICAgZmxvYXQ6IHJpZ2h0O1xuICAgIGZvbnQtc2l6ZTogMjBweDtcbiAgICBmb250LXdlaWdodDogYm9sZDtcbn1cblxuLnN0YXRzIC5tZWRhbCAuZmEtbWVkYWx7XG4gICAgZm9udC1zaXplOiAyMHB4O1xuICAgIG1hcmdpbi1sZWZ0OiAtM3B4O1xufVxuXG4uc3RhdHMgLm1lZGFsLTB7XG4gICAgY29sb3I6IGdvbGRlbnJvZDtcbn1cbi5zdGF0cyAubWVkYWwtMXtcbiAgICBjb2xvcjogc2lsdmVyO1xufVxuLnN0YXRzIC5tZWRhbC0ye1xuICAgIGNvbG9yOiAjY2Q3ZjMyO1xufVxuXG4uZmxvYXQtcmlnaHR7XG4gICAgZmxvYXQ6IHJpZ2h0O1xuICAgIG1hcmdpbi1yaWdodDogMTBweDtcbn1cblxuLnN0YXRzIGgze1xuICAgIG1hcmdpbjogNXB4IDBweCAwcHg7XG4gICAgZmxvYXQ6IGxlZnQ7XG59XG5cbi5zdGF0cyBzcGFue1xuICAgIGZvbnQtc2l6ZTogMC44ZW07XG59XG5cbi5udW1iZXJ7XG4gICAgZm9udC1zaXplOiAyM3B4O1xuICAgIGZvbnQtd2VpZ2h0OiBib2xkO1xuICAgIG1hcmdpbjogMnB4IDVweDtcbiAgICBjb2xvcjogIzdkN2Q3ZDtcbn1cblxuLmNvbnRlbnQtdGFibGUgZGl2e1xuICAgIHdpZHRoOiAxNCU7XG4gICAgZmxvYXQ6IGxlZnQ7XG4gICAgdGV4dC1hbGlnbjogY2VudGVyO1xuICAgIGJvcmRlci1sZWZ0OiAxcHggc29saWQgI2Q0ZDRkNDtcbiAgICBtYXJnaW4tdG9wOiA3cHg7XG59XG5cbi5hdmF0YXJfc20ge1xuICAgIHdpZHRoOiAzNXB4O1xuICAgIGhlaWdodDogMzVweDtcbiAgICBib3JkZXItcmFkaXVzOiAyMHB4O1xuICAgIG1hcmdpbi10b3A6IDBweDtcbiAgICBtYXJnaW4tYm90dG9tOiAtM3B4O1xufSIsIi5tYXQtY2FyZCB7XG4gIHBhZGRpbmc6IDEwcHggMTBweDtcbiAgbWFyZ2luOiA1cHggMHB4O1xufVxuXG4uc3RhdHMgLm1lZGFsIHtcbiAgZmxvYXQ6IHJpZ2h0O1xuICBmb250LXNpemU6IDIwcHg7XG4gIGZvbnQtd2VpZ2h0OiBib2xkO1xufVxuXG4uc3RhdHMgLm1lZGFsIC5mYS1tZWRhbCB7XG4gIGZvbnQtc2l6ZTogMjBweDtcbiAgbWFyZ2luLWxlZnQ6IC0zcHg7XG59XG5cbi5zdGF0cyAubWVkYWwtMCB7XG4gIGNvbG9yOiBnb2xkZW5yb2Q7XG59XG5cbi5zdGF0cyAubWVkYWwtMSB7XG4gIGNvbG9yOiBzaWx2ZXI7XG59XG5cbi5zdGF0cyAubWVkYWwtMiB7XG4gIGNvbG9yOiAjY2Q3ZjMyO1xufVxuXG4uZmxvYXQtcmlnaHQge1xuICBmbG9hdDogcmlnaHQ7XG4gIG1hcmdpbi1yaWdodDogMTBweDtcbn1cblxuLnN0YXRzIGgzIHtcbiAgbWFyZ2luOiA1cHggMHB4IDBweDtcbiAgZmxvYXQ6IGxlZnQ7XG59XG5cbi5zdGF0cyBzcGFuIHtcbiAgZm9udC1zaXplOiAwLjhlbTtcbn1cblxuLm51bWJlciB7XG4gIGZvbnQtc2l6ZTogMjNweDtcbiAgZm9udC13ZWlnaHQ6IGJvbGQ7XG4gIG1hcmdpbjogMnB4IDVweDtcbiAgY29sb3I6ICM3ZDdkN2Q7XG59XG5cbi5jb250ZW50LXRhYmxlIGRpdiB7XG4gIHdpZHRoOiAxNCU7XG4gIGZsb2F0OiBsZWZ0O1xuICB0ZXh0LWFsaWduOiBjZW50ZXI7XG4gIGJvcmRlci1sZWZ0OiAxcHggc29saWQgI2Q0ZDRkNDtcbiAgbWFyZ2luLXRvcDogN3B4O1xufVxuXG4uYXZhdGFyX3NtIHtcbiAgd2lkdGg6IDM1cHg7XG4gIGhlaWdodDogMzVweDtcbiAgYm9yZGVyLXJhZGl1czogMjBweDtcbiAgbWFyZ2luLXRvcDogMHB4O1xuICBtYXJnaW4tYm90dG9tOiAtM3B4O1xufSJdfQ== */";
     /***/
   },
 
@@ -2404,7 +2438,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       }, {
         key: "getStats",
         value: function getStats() {
-          var _this12 = this;
+          var _this13 = this;
 
           var date = new Date();
           var thisMonth = "".concat(date.getFullYear(), "-").concat(('0' + date.getMonth()).slice(-2), "-01");
@@ -2420,7 +2454,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
                   name: element.fullName,
                   avatar: element.avatar.length > 0 ? element.avatar['0'].url : '',
                   applications: element.applications.length,
-                  moneyI: element.applications.reduce(function (total, apps) {
+                  moneyIn: element.applications.reduce(function (total, apps) {
                     return apps.moneyIn === true ? total + 1 : total;
                   }, 0),
                   approved: element.applications.reduce(function (total, apps) {
@@ -2434,16 +2468,21 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
                   }, 0)
                 };
 
-                _this12.stats.push(stats);
+                _this13.stats.push(stats);
               });
 
-              _this12.stats.sort(function (a, b) {
+              _this13.stats.sort(function (a, b) {
                 return a.applications > b.applications ? -1 : b.applications > a.applications ? 1 : 0;
               });
 
-              console.log(_this12.stats);
+              console.log(_this13.stats);
             }
           });
+        }
+      }, {
+        key: "place",
+        value: function place(_place) {
+          return parseInt(_place) + 1;
         }
       }]);
 
@@ -2618,7 +2657,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       _createClass(ApplicationsComponent, [{
         key: "ngOnInit",
         value: function ngOnInit() {
-          var _this13 = this;
+          var _this14 = this;
 
           this.displayedColumns = ['address', 'createdAt', 'applicationType', 'price', 'moneyIn', 'approved', 'denied', 'edit'];
           this.loading = true;
@@ -2627,14 +2666,14 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
           this.userId = user.user.id;
           this.getApplications();
           this.searchUpdate.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_9__["debounceTime"])(400), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_9__["distinctUntilChanged"])()).subscribe(function (value) {
-            _this13.search = value;
+            _this14.search = value;
 
-            _this13.getApplications();
+            _this14.getApplications();
           });
           this.socketService.get().subscribe(function (method) {
             // console.log(method);
-            if (typeof _this13[method] === 'function') {
-              _this13[method]();
+            if (typeof _this14[method] === 'function') {
+              _this14[method]();
             }
           });
         }
@@ -2671,22 +2710,22 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       }, {
         key: "getApplications",
         value: function getApplications() {
-          var _this14 = this;
+          var _this15 = this;
 
           var where = "{\n      agent: \"".concat(this.userId, "\",\n      address_contains: \"").concat(this.search, "\",\n      applicationType: \"").concat(this.applicationType, "\"\n    }");
           var query = "\n    query{\n        applications(sort: \"createdAt:desc\", start: ".concat(this.startPage, ", limit: ").concat(this.limitPage, ", where: ").concat(where, ") {\n            id,\n            applicationType,\n            address,\n            approved,\n            createdAt,\n            denied,\n            listingAgreement,\n            offerOut,\n            offerExecuted,\n            closed,\n            moneyIn,\n            price,\n            agent {\n                id\n                fullName\n            }\n        }\n        applicationsConnection (where: ").concat(where, ") {\n            aggregate {\n                count\n            }\n        }\n    }");
           this.dataService.getData(query).subscribe(function (_ref3) {
             var data = _ref3.data,
                 loading = _ref3.loading;
-            _this14.dataSource = new _angular_material_table__WEBPACK_IMPORTED_MODULE_7__["MatTableDataSource"](data.applications);
-            _this14.totalPages = data.applicationsConnection.aggregate.count;
-            _this14.loading = false;
+            _this15.dataSource = new _angular_material_table__WEBPACK_IMPORTED_MODULE_7__["MatTableDataSource"](data.applications);
+            _this15.totalPages = data.applicationsConnection.aggregate.count;
+            _this15.loading = false;
           });
         }
       }, {
         key: "createApp",
         value: function createApp() {
-          var _this15 = this;
+          var _this16 = this;
 
           var dialogRef = this.dialog.open(_create_application_create_application_component__WEBPACK_IMPORTED_MODULE_3__["CreateApplicationComponent"], {
             width: '550px',
@@ -2696,9 +2735,9 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
             }
           });
           dialogRef.afterClosed().subscribe(function (res) {
-            _this15.socketService.send('public', 'getApplications');
+            _this16.socketService.send('public', 'getApplications');
 
-            _this15.getApplications();
+            _this16.getApplications();
           });
         }
       }, {
@@ -2718,16 +2757,16 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       }, {
         key: "updateApp",
         value: function updateApp(app, field) {
-          var _this16 = this;
+          var _this17 = this;
 
           if (this.editing.includes(app.id)) {
             this.loading = true;
             app[field] = !app[field];
             var appData = "mutation {\n          updateApplication(input: {\n            where: {\n              id: \"".concat(app.id, "\"\n            },\n            data: {\n              ").concat(field, ": ").concat(app[field], "\n            }\n          }) {\n            application {\n              id\n            }\n          }\n        }");
             this.dataService.updateData(appData).subscribe(function () {
-              _this16.socketService.send('public', 'getApplications');
+              _this17.socketService.send('public', 'getApplications');
 
-              _this16.getApplications();
+              _this17.getApplications();
             });
           }
         }
@@ -2893,11 +2932,11 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       }, {
         key: "createApplication",
         value: function createApplication() {
-          var _this17 = this;
+          var _this18 = this;
 
           var appData = "mutation{\n        createApplication(input: {\n        data: {\n          address: \"".concat(this.createApplicationForm.value.address, "\",\n          price: ").concat(this.createApplicationForm.value.price, ",\n          moneyIn: ").concat(this.createApplicationForm.value.moneyIn, ",\n          approved: ").concat(this.createApplicationForm.value.approved, ",\n          denied: ").concat(this.createApplicationForm.value.denied, ",\n          offerOut: ").concat(this.createApplicationForm.value.offerOut, ",\n          listingAgreement: ").concat(this.createApplicationForm.value.listingAgreement, ",\n          offerExecuted: ").concat(this.createApplicationForm.value.offerExecuted, ",\n          closed: ").concat(this.createApplicationForm.value.closed, ",\n          applicationType: ").concat(this.appType, ",\n          agent: \"").concat(this.userId, "\"\n        }\n      }) {\n        application {\n          address\n          id\n          agent {\n            id\n          }\n        }\n      }\n    }");
           this.dataService.createData(appData).subscribe(function (res) {
-            _this17.dialogRef.close();
+            _this18.dialogRef.close();
           });
         }
       }]);
@@ -3108,7 +3147,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       _createClass(ManageApplicationsComponent, [{
         key: "ngOnInit",
         value: function ngOnInit() {
-          var _this18 = this;
+          var _this19 = this;
 
           this.loading = true;
           var today = new Date();
@@ -3120,9 +3159,9 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
           this.dataSource.sort = this.sort;
           this.afAuth.user.subscribe(function (res) {
             if (res) {
-              _this18.userId = res.uid;
+              _this19.userId = res.uid;
 
-              _this18.getApplications();
+              _this19.getApplications();
             }
           });
         }
@@ -3150,7 +3189,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       }, {
         key: "getApplications",
         value: function getApplications() {
-          var _this19 = this;
+          var _this20 = this;
 
           var start = "".concat(this.selectedYear).concat(this.selectedMonth, "01");
           var end = "".concat(this.selectedYear).concat(this.selectedMonth, "31");
@@ -3159,8 +3198,8 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
             // const appsData: Application[] = res;
             // this.applications = appsData;
 
-            _this19.dataSource = new _angular_material_table__WEBPACK_IMPORTED_MODULE_6__["MatTableDataSource"](res);
-            _this19.loading = false;
+            _this20.dataSource = new _angular_material_table__WEBPACK_IMPORTED_MODULE_6__["MatTableDataSource"](res);
+            _this20.loading = false;
           });
         }
       }, {
@@ -3260,14 +3299,14 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     /*#__PURE__*/
     function () {
       function AuthService(fireAuth) {
-        var _this20 = this;
+        var _this21 = this;
 
         _classCallCheck(this, AuthService);
 
         this.fireAuth = fireAuth;
         this.fireAuth.authState.subscribe(function (res) {
           if (res) {
-            _this20.userDetails = res;
+            _this21.userDetails = res;
           }
         });
       }
@@ -3430,10 +3469,10 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       _createClass(DashboardComponent, [{
         key: "ngOnInit",
         value: function ngOnInit() {
-          var _this21 = this;
+          var _this22 = this;
 
           this.zone.run(function () {
-            return _this21.router.navigateByUrl('/dashboard/applications-dashboard');
+            return _this22.router.navigateByUrl('/dashboard/applications-dashboard');
           });
         }
       }]);
@@ -3560,31 +3599,31 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
         value: function createUserAndTeam(user) {
           return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0,
           /*#__PURE__*/
-          regeneratorRuntime.mark(function _callee() {
-            var _this22 = this;
+          regeneratorRuntime.mark(function _callee2() {
+            var _this23 = this;
 
-            return regeneratorRuntime.wrap(function _callee$(_context) {
+            return regeneratorRuntime.wrap(function _callee2$(_context2) {
               while (1) {
-                switch (_context.prev = _context.next) {
+                switch (_context2.prev = _context2.next) {
                   case 0:
-                    _context.next = 2;
+                    _context2.next = 2;
                     return this.createTeam().then(function (res) {
                       user.teamId = res.id;
 
-                      _this22.afStore.collection('users').doc(user.id).set(user);
+                      _this23.afStore.collection('users').doc(user.id).set(user);
                     }).catch(function (err) {
                       return console.log(err);
                     });
 
                   case 2:
-                    return _context.abrupt("return", _context.sent);
+                    return _context2.abrupt("return", _context2.sent);
 
                   case 3:
                   case "end":
-                    return _context.stop();
+                    return _context2.stop();
                 }
               }
-            }, _callee, this);
+            }, _callee2, this);
           }));
         }
       }, {
@@ -3779,21 +3818,21 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       }, {
         key: "forgot",
         value: function forgot() {
-          var _this23 = this;
+          var _this24 = this;
 
           var email = this.forgotForm.value.email;
           this.authService.forgotPassword(email).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_6__["first"])()).subscribe(function (data) {
             // this.presentToast('Please check your emails for a password reset directions');
-            _this23.snackBard.open('Please check your email for instructions', null, {
+            _this24.snackBard.open('Please check your email for instructions', null, {
               duration: 3000
             });
 
-            _this23.router.navigate(['/login']);
+            _this24.router.navigate(['/login']);
           }, function (error) {
             console.log(error);
             var errorMessage = error['0'].messages['0'].message;
 
-            _this23.snackBard.open(errorMessage, null, {
+            _this24.snackBard.open(errorMessage, null, {
               duration: 3000
             }); // this.presentToast(errorMessage);
             // this.loading = false;
@@ -4086,13 +4125,13 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       _createClass(FormComponent, [{
         key: "ngOnInit",
         value: function ngOnInit() {
-          var _this24 = this;
+          var _this25 = this;
 
           this.activateRoute.paramMap.subscribe(function (params) {
-            _this24.formName = params.get('form');
-            _this24.contactId = params.get('id');
-            _this24.loading = false;
-            _this24.pdfSrc = "../../assets/".concat(_this24.formName, ".pdf");
+            _this25.formName = params.get('form');
+            _this25.contactId = params.get('id');
+            _this25.loading = false;
+            _this25.pdfSrc = "../../assets/".concat(_this25.formName, ".pdf");
           });
         }
       }, {
@@ -4192,7 +4231,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       }, {
         key: "zoomIn",
         value: function zoomIn() {
-          var _this25 = this;
+          var _this26 = this;
 
           var prevZoom = "zoom_".concat(this.zoom);
           var actualZoom = 'zoom_' + (this.zoom + .25);
@@ -4201,10 +4240,10 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
           var scale = this.zoom + .4;
           this.checkBoxSize = "scale(".concat(scale, ")");
           this.inputList = this.inputList.map(function (i) {
-            i.left *= .25 / _this25.zoom + 1;
-            i.top *= .25 / _this25.zoom + 1;
-            i.width *= .25 / _this25.zoom + 1;
-            i.height *= .25 / _this25.zoom + 1;
+            i.left *= .25 / _this26.zoom + 1;
+            i.top *= .25 / _this26.zoom + 1;
+            i.width *= .25 / _this26.zoom + 1;
+            i.height *= .25 / _this26.zoom + 1;
             i.spacing = i.width / i.maxLen - 10.5;
             return i;
           });
@@ -4213,7 +4252,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       }, {
         key: "zoomOut",
         value: function zoomOut() {
-          var _this26 = this;
+          var _this27 = this;
 
           var prevZoom = "zoom_".concat(this.zoom);
           var actualZoom = 'zoom_' + (this.zoom - .25);
@@ -4222,10 +4261,10 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
           var scale = this.zoom - .4;
           this.checkBoxSize = "scale(".concat(scale, ")");
           this.inputList = this.inputList.map(function (i) {
-            i.left *= 1 - .25 / _this26.zoom;
-            i.top *= 1 - .25 / _this26.zoom;
-            i.width *= 1 - .25 / _this26.zoom;
-            i.height *= 1 - .25 / _this26.zoom;
+            i.left *= 1 - .25 / _this27.zoom;
+            i.top *= 1 - .25 / _this27.zoom;
+            i.width *= 1 - .25 / _this27.zoom;
+            i.height *= 1 - .25 / _this27.zoom;
             i.spacing = i.width / i.maxLen - 10.5;
             return i;
           });
@@ -4244,7 +4283,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       }, {
         key: "loadComplete",
         value: function loadComplete(pdf) {
-          var _this27 = this;
+          var _this28 = this;
 
           this.loading = true;
           this.totalPages = pdf.numPages;
@@ -4268,10 +4307,10 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
                 // get the rectangle that represent the single field
                 // and resize it according to the current DPI
                 var pageNumber = currentPage.pageIndex + 1;
-                var fieldRect = currentPage.getViewport(_this27.dpiRatio).convertToViewportRectangle(a.rect); // const fieldTop = ((i - 1) * currentPage.getViewport(this.dpiRatio).height) + ((i - 1) * 9);
+                var fieldRect = currentPage.getViewport(_this28.dpiRatio).convertToViewportRectangle(a.rect); // const fieldTop = ((i - 1) * currentPage.getViewport(this.dpiRatio).height) + ((i - 1) * 9);
                 // add the corresponding input
 
-                _this27.addInput(a, fieldRect, pageNumber);
+                _this28.addInput(a, fieldRect, pageNumber);
               });
             });
           };
@@ -4282,8 +4321,8 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
           setTimeout(function () {
             console.log('loaded');
-            _this27.loading = false;
-            _this27.isLoaded = true; // this.fomrValues.map(res => {
+            _this28.loading = false;
+            _this28.isLoaded = true; // this.fomrValues.map(res => {
             //   this.myForm.get(res.name).setValue(res.value);
             // });
           }, 1000); // console.log('finih')
@@ -4293,21 +4332,21 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
         value: function downloadForm() {
           return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0,
           /*#__PURE__*/
-          regeneratorRuntime.mark(function _callee2() {
-            var _this28 = this;
+          regeneratorRuntime.mark(function _callee3() {
+            var _this29 = this;
 
             var headers, formData;
-            return regeneratorRuntime.wrap(function _callee2$(_context2) {
+            return regeneratorRuntime.wrap(function _callee3$(_context3) {
               while (1) {
-                switch (_context2.prev = _context2.next) {
+                switch (_context3.prev = _context3.next) {
                   case 0:
                     this.loading = true;
                     headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_5__["HttpHeaders"]();
-                    _context2.next = 4;
+                    _context3.next = 4;
                     return this.checkValue();
 
                   case 4:
-                    formData = _context2.sent;
+                    formData = _context3.sent;
                     headers = headers.set('Accept', ['application/pdf', 'application/json']);
                     this.http.post("http://localhost:3000/api/".concat(this.formName), formData, {
                       headers: headers,
@@ -4318,15 +4357,15 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
                         type: 'application/pdf'
                       });
                       Object(file_saver__WEBPACK_IMPORTED_MODULE_6__["saveAs"])(file, 'testData.pdf');
-                      _this28.loading = false;
+                      _this29.loading = false;
                     }); // console.log({formType: 'ar-11', formData: this.myForm.value});
 
                   case 7:
                   case "end":
-                    return _context2.stop();
+                    return _context3.stop();
                 }
               }
-            }, _callee2, this);
+            }, _callee3, this);
           }));
         }
       }, {
@@ -4334,20 +4373,20 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
         value: function printForm() {
           return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0,
           /*#__PURE__*/
-          regeneratorRuntime.mark(function _callee3() {
-            var _this29 = this;
+          regeneratorRuntime.mark(function _callee4() {
+            var _this30 = this;
 
             var formData, headers;
-            return regeneratorRuntime.wrap(function _callee3$(_context3) {
+            return regeneratorRuntime.wrap(function _callee4$(_context4) {
               while (1) {
-                switch (_context3.prev = _context3.next) {
+                switch (_context4.prev = _context4.next) {
                   case 0:
                     this.loading = true;
-                    _context3.next = 3;
+                    _context4.next = 3;
                     return this.checkValue();
 
                   case 3:
-                    formData = _context3.sent;
+                    formData = _context4.sent;
                     headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_5__["HttpHeaders"]();
                     headers = headers.set('Accept', ['application/pdf', 'application/json']);
                     this.http.post("http://localhost:3000/api/".concat(this.formName), formData, {
@@ -4358,20 +4397,20 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
                       var file = new Blob([resp], {
                         type: 'application/pdf'
                       });
-                      _this29.blobUrl = URL.createObjectURL(file);
+                      _this30.blobUrl = URL.createObjectURL(file);
                       print_js__WEBPACK_IMPORTED_MODULE_7__({
-                        printable: _this29.blobUrl,
+                        printable: _this30.blobUrl,
                         type: 'pdf'
                       });
-                      _this29.loading = false;
+                      _this30.loading = false;
                     });
 
                   case 7:
                   case "end":
-                    return _context3.stop();
+                    return _context4.stop();
                 }
               }
-            }, _callee3, this);
+            }, _callee4, this);
           }));
         }
       }, {
@@ -4628,19 +4667,19 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       }, {
         key: "login",
         value: function login() {
-          var _this30 = this;
+          var _this31 = this;
 
           var email = this.loginForm.value.email;
           var password = this.loginForm.value.password;
           this.authenticationService.login(email, password).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["first"])()).subscribe(function (data) {
             // this.router.navigateByUrl(this.returnUrl);
-            _this30.router.navigate(['/dashboard']).then(function () {// this.loading.dismiss();
+            _this31.router.navigate(['/dashboard']).then(function () {// this.loading.dismiss();
             });
           }, function (error) {
             console.log(error);
             var errorMessage = error['0'].messages['0'].message;
 
-            _this30.snackBard.open(errorMessage, null, {
+            _this31.snackBard.open(errorMessage, null, {
               duration: 3000
             }); // this.loading.dismiss();
 
@@ -4796,7 +4835,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     /*#__PURE__*/
     function () {
       function NavigationComponent(breakpointObserver, authService, router, socketService) {
-        var _this31 = this;
+        var _this32 = this;
 
         _classCallCheck(this, NavigationComponent);
 
@@ -4808,15 +4847,15 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
           return result.matches;
         }));
         this.authService.currentUser.subscribe(function (data) {
-          _this31.user = data;
+          _this32.user = data;
 
           if (data && data.user && data.user.avatar) {// this.userAvatar = `https://backend.apartmentsource.com//${data.user.avatar.url}`;
           }
         });
         this.socketService.get().subscribe(function (method) {
           // console.log(method);
-          if (typeof _this31[method] === 'function') {
-            _this31[method]();
+          if (typeof _this32[method] === 'function') {
+            _this32[method]();
           }
         }); // this.socketService.listenPrivate().subscribe(data => this.realTimeOps(data));
         // this.socketService.listenPublic().subscribe(data => this.realTimeOps(data));
@@ -4983,25 +5022,25 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       }, {
         key: "register",
         value: function register() {
-          var _this32 = this;
+          var _this33 = this;
 
           this.userData.email = this.registerForm.value.email;
           var password = this.registerForm.value.password;
           this.userData.name = this.registerForm.value.name;
           this.authService.register(this.userData, password).then(function (res) {
             console.log(res);
-            _this32.userData.id = res.user.uid;
-            _this32.userData.name = _this32.registerForm.value.name;
-            _this32.userData.email = res.user.email; // this.userData.isAdmin = true;
+            _this33.userData.id = res.user.uid;
+            _this33.userData.name = _this33.registerForm.value.name;
+            _this33.userData.email = res.user.email; // this.userData.isAdmin = true;
 
-            _this32.dataService.createUser(_this32.userData).then(function () {
-              _this32.snackBard.open('New Account have been created, please login using your credentials', null, {
+            _this33.dataService.createUser(_this33.userData).then(function () {
+              _this33.snackBard.open('New Account have been created, please login using your credentials', null, {
                 duration: 3000
               });
 
-              _this32.router.navigate(['/dashboard/users']);
+              _this33.router.navigate(['/dashboard/users']);
             }).catch(function (err) {
-              _this32.snackBard.open(err, null, {
+              _this33.snackBard.open(err, null, {
                 duration: 3000
               });
             });
@@ -5022,7 +5061,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
                 message = err.message;
             }
 
-            _this32.snackBard.open(message, null, {
+            _this33.snackBard.open(message, null, {
               duration: 3000
             });
           });
@@ -5211,7 +5250,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       _createClass(AuthService, [{
         key: "login",
         value: function login(username, pw) {
-          var _this33 = this;
+          var _this34 = this;
 
           return this.http.post('https://backend.apartmentsource.com/auth/local', {
             identifier: username,
@@ -5220,7 +5259,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
             // store user details and jwt token in local storage to keep user logged in between page refreshes
             localStorage.setItem('currentUser', JSON.stringify(user));
 
-            _this33.currentUserSubject.next(user);
+            _this34.currentUserSubject.next(user);
 
             return user;
           }));
@@ -5238,7 +5277,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       }, {
         key: "reset",
         value: function reset(code, pw, pwcnf) {
-          var _this34 = this;
+          var _this35 = this;
 
           return this.http.post('https://backend.apartmentsource.com/auth/reset-password', {
             code: code,
@@ -5248,7 +5287,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
             // store user details and jwt token in local storage to keep user logged in between page refreshes
             localStorage.setItem('currentUser', JSON.stringify(user));
 
-            _this34.currentUserSubject.next(user);
+            _this35.currentUserSubject.next(user);
 
             return user;
           }));
@@ -5408,10 +5447,10 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       }, {
         key: "get",
         value: function get() {
-          var _this35 = this;
+          var _this36 = this;
 
           return this.socket.fromEvent('public').pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["map"])(function (data) {
-            var currentUser = _this35.authService.currentUserValue.user.id; // console.log(data);
+            var currentUser = _this36.authService.currentUserValue.user.id; // console.log(data);
 
             if (data.to === 'public' || data.to === currentUser) {
               return data.method;
@@ -5634,7 +5673,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       }, {
         key: "createUser",
         value: function createUser() {
-          var _this36 = this;
+          var _this37 = this;
 
           this.loading = true;
 
@@ -5650,38 +5689,10 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
           this.user.user.blocked = this.createUserForm.value.isBloked ? true : false;
           var password = this.createUserForm.value.password;
           this.authService.createUser(this.user, password).subscribe(function (data) {
-            _this36.user.user.id = data['id'];
+            _this37.user.user.id = data['id'];
 
-            _this36.updateUser(); // console.log(data);
+            _this37.updateUser(); // console.log(data);
 
-          }, function (err) {
-            console.log(err);
-            var erroMsg = err['0'].messages['0'].message;
-
-            _this36.snackBard.open(erroMsg, null, {
-              duration: 3000
-            });
-          });
-        }
-      }, {
-        key: "updateUser",
-        value: function updateUser() {
-          var _this37 = this;
-
-          this.user.user.role = {
-            name: this.createUserForm.value.isAdmin === true ? 'Administrator' : ''
-          };
-          this.user.user.email = this.createUserForm.value.email;
-          this.user.user.username = this.createUserForm.value.email;
-          this.user.user.fullName = this.createUserForm.value.fullName;
-          var password = this.createUserForm.value.password;
-          this.user.user.blocked = this.createUserForm.value.isBloked ? true : false;
-          this.authService.updateUser(this.user, password).subscribe(function (data) {
-            if (_this37.avatar) {
-              _this37.uploadAvatar(data);
-            } else {
-              _this37.closeRefresh();
-            }
           }, function (err) {
             console.log(err);
             var erroMsg = err['0'].messages['0'].message;
@@ -5692,9 +5703,37 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
           });
         }
       }, {
+        key: "updateUser",
+        value: function updateUser() {
+          var _this38 = this;
+
+          this.user.user.role = {
+            name: this.createUserForm.value.isAdmin === true ? 'Administrator' : ''
+          };
+          this.user.user.email = this.createUserForm.value.email;
+          this.user.user.username = this.createUserForm.value.email;
+          this.user.user.fullName = this.createUserForm.value.fullName;
+          var password = this.createUserForm.value.password;
+          this.user.user.blocked = this.createUserForm.value.isBloked ? true : false;
+          this.authService.updateUser(this.user, password).subscribe(function (data) {
+            if (_this38.avatar) {
+              _this38.uploadAvatar(data);
+            } else {
+              _this38.closeRefresh();
+            }
+          }, function (err) {
+            console.log(err);
+            var erroMsg = err['0'].messages['0'].message;
+
+            _this38.snackBard.open(erroMsg, null, {
+              duration: 3000
+            });
+          });
+        }
+      }, {
         key: "uploadAvatar",
         value: function uploadAvatar(userData) {
-          var _this38 = this;
+          var _this39 = this;
 
           var formData = new FormData();
           formData.append('files', this.avatar, this.avatar.name);
@@ -5704,7 +5743,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
           formData.append('field', 'avatar');
           this.authService.uploadAvatar(formData).subscribe(function (data) {
             // console.log(data);
-            _this38.closeRefresh();
+            _this39.closeRefresh();
           }, function (error) {
             console.log(error);
           });
@@ -5712,14 +5751,14 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       }, {
         key: "preview",
         value: function preview(files) {
-          var _this39 = this;
+          var _this40 = this;
 
           if (files) {
             this.avatar = files.item(0);
             var reader = new FileReader();
 
             reader.onload = function (e) {
-              _this39.imageSrc = reader.result;
+              _this40.imageSrc = reader.result;
             };
 
             reader.readAsDataURL(this.avatar);
@@ -5940,13 +5979,13 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       _createClass(UsersComponent, [{
         key: "ngOnInit",
         value: function ngOnInit() {
-          var _this40 = this;
+          var _this41 = this;
 
           this.dataSource.sort = this.sort;
           this.getUsers();
           this.socketService.get().subscribe(function (method) {
-            if (typeof _this40[method] === 'function') {
-              _this40[method]();
+            if (typeof _this41[method] === 'function') {
+              _this41[method]();
             }
           }); // this.socketService.listenPrivate().subscribe(data => this.realTimeOps(data));
           // this.socketService.listenPublic().subscribe(data => this.realTimeOps(data));
@@ -5989,7 +6028,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       }, {
         key: "getUsers",
         value: function getUsers() {
-          var _this41 = this;
+          var _this42 = this;
 
           this.queryUsers = this.apollo.query({
             query: graphql_tag__WEBPACK_IMPORTED_MODULE_10___default.a(_templateObject4()),
@@ -5999,10 +6038,10 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
             var data = _ref4.data,
                 loading = _ref4.loading;
             // console.log(data);
-            _this41.dataSource = new _angular_material_table__WEBPACK_IMPORTED_MODULE_7__["MatTableDataSource"](data.users);
-            _this41.dataSource.paginator = _this41.paginator; // console.log(this.dataSource);
+            _this42.dataSource = new _angular_material_table__WEBPACK_IMPORTED_MODULE_7__["MatTableDataSource"](data.users);
+            _this42.dataSource.paginator = _this42.paginator; // console.log(this.dataSource);
 
-            _this41.queryUsers.unsubscribe();
+            _this42.queryUsers.unsubscribe();
           });
         }
       }, {
@@ -6122,7 +6161,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       }, {
         key: "getStats",
         value: function getStats() {
-          var _this42 = this;
+          var _this43 = this;
 
           var today = new Date();
           var year = today.getFullYear();
@@ -6130,7 +6169,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
           var thisMonth = "".concat(year).concat(month); // const thisMonth = '201908';
 
           this.dataService.getStats(thisMonth).subscribe(function (res) {
-            _this42.stats = res;
+            _this43.stats = res;
             console.log(res);
           });
         }
