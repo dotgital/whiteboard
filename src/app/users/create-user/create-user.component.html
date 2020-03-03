@@ -1,5 +1,5 @@
 <mat-progress-bar mode="indeterminate" *ngIf="loading" class="modal-loading"></mat-progress-bar>
-  <form #avatarUpload (ngSubmit)="uploadAvatar()" >
+  <form #avatarUpload (ngSubmit)="uploadAvatar($event)" >
   <div fxLayout="row" fxLayoutAlign="center center">
       <div class="image-upload">
           <label for="file-input">

@@ -29,8 +29,8 @@ export class CreateUserComponent implements OnInit {
   public avatar;
   public task;
   public downloadURL;
-  public adminChanged: false;
-  public blokedChanged: false;
+  public adminChanged = false;
+  public blokedChanged = false;
   private userData: Users = {
     avatar: '',
     id: '',

@@ -9,7 +9,6 @@ import { AuthGuard } from './services/auth-guard.service';
 import { RegisterComponent } from './register/register.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { FormListComponent } from './form-list/form-list.component';
-import { FormComponent } from './form/form/form.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { LoginComponent } from './login/login.component';
@@ -22,8 +21,6 @@ const routes: Routes = [
   { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard], children: [
     { path: 'register', component: RegisterComponent },
     { path: 'forms', component: FormListComponent },
-    { path: 'form/:form', component: FormComponent },
-    { path: 'form/:form/:id', component: FormComponent },
     { path: 'users', component: UsersComponent},
     { path: 'applications', component: ApplicationsComponent },
     { path: 'whiteboard', component: WhiteboardComponent },

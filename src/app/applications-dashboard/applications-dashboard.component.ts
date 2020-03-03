@@ -148,12 +148,12 @@ export class ApplicationsDashboardComponent implements OnInit, OnDestroy {
   }
 
   migrateApps() {
-    this.applicatiosOld.forEach(appOld => {
-      console.log(appOld.address);
-      this.authService.migrateApp(appOld).subscribe(res => {
-        console.log(res);
-      });
-    });
+    // this.applicatiosOld.forEach(appOld => {
+    //   console.log(appOld.address);
+    //   this.authService.migrateApp(appOld).subscribe(res => {
+    //     console.log(res);
+    //   });
+    // });
   }
 
   async getOldApps(){
@@ -161,11 +161,11 @@ export class ApplicationsDashboardComponent implements OnInit, OnDestroy {
       const oldApps: any[] = res;
       oldApps.forEach(el => {
         // console.log(el);
-        const query = `query { users(where: {fullName_contains: "${el.createBy}"}) {id, fullName}}`;
-        this.dataService.getData(query).subscribe(resUser => {
-          console.log(el);
-          console.log(resUser.data.users["0"]);
-        });
+        // const query = `query { users(where: {fullName_contains: "${el.createBy}"}) {id, fullName}}`;
+        // this.dataService.getData(query).subscribe(resUser => {
+        //   console.log(el);
+        //   console.log(resUser.data.users["0"]);
+        // });
       });
     });
   }

@@ -7,8 +7,6 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NavigationComponent } from './navigation/navigation.component';
 import { LayoutModule } from '@angular/cdk/layout';
-import { FormComponent } from './form/form/form.component';
-import { PdfViewerModule } from 'ng2-pdf-viewer';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormListComponent } from './form-list/form-list.component';
@@ -21,28 +19,28 @@ import { environment } from '../environments/environment';
 
 import { FlexLayoutModule } from '@angular/flex-layout';
 
-import { MatToolbarModule,
-  MatButtonModule,
-  MatSidenavModule,
-  MatIconModule,
-  MatListModule,
-  MatProgressBarModule,
-  MatCheckboxModule,
-  MatRadioModule,
-  MatFormFieldModule,
-  MatSortModule,
-  MatPaginatorModule,
-  MatDialogModule,
-  MatSnackBarModule,
-  MatTableModule,
-  MatInputModule,
-  MatDatepickerModule,
-  MatNativeDateModule,
-  MatCardModule,
-  MatButtonToggleModule,
-  MatSlideToggleModule,
-  MatProgressSpinnerModule,
-  MatSelectModule} from '@angular/material';
+import { MatButtonModule } from '@angular/material/button';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
+import { MatCardModule } from '@angular/material/card';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatIconModule } from '@angular/material/icon';
+import { MatInputModule } from '@angular/material/input';
+import { MatListModule } from '@angular/material/list';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatRadioModule } from '@angular/material/radio';
+import { MatSelectModule } from '@angular/material/select';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatSortModule } from '@angular/material/sort';
+import { MatTableModule } from '@angular/material/table';
+import { MatToolbarModule } from '@angular/material/toolbar';
 import { LoginComponent } from './login/login.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { RegisterComponent } from './register/register.component';
@@ -71,7 +69,6 @@ const config: SocketIoConfig = { url: 'https://backend.apartmentsource.com', opt
   declarations: [
     AppComponent,
     NavigationComponent,
-    FormComponent,
     FormListComponent,
     LoginComponent,
     DashboardComponent,
@@ -118,7 +115,6 @@ const config: SocketIoConfig = { url: 'https://backend.apartmentsource.com', opt
     MatTableModule,
     MatInputModule,
     MatRadioModule,
-    PdfViewerModule,
     HttpClientModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
