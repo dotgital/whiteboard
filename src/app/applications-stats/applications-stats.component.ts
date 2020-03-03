@@ -50,7 +50,7 @@ export class ApplicationsStatsComponent implements OnInit {
             name: element.fullName,
             avatar: element.avatar.length > 0 ? element.avatar['0'].url : '',
             applications: element.applications.length,
-            moneyI: element.applications.reduce((total, apps) => (apps.moneyIn === true ? total + 1 : total), 0),
+            moneyIn: element.applications.reduce((total, apps) => (apps.moneyIn === true ? total + 1 : total), 0),
             approved: element.applications.reduce((total, apps) => (apps.approved === true ? total + 1 : total), 0),
             invoiceOut: element.applications.reduce((total, apps) => (apps.invoiceOut === true ? total + 1 : total), 0),
             invoicePaid: element.applications.reduce((total, apps) => (apps.invoicePaid === true ? total + 1 : total), 0),
@@ -61,5 +61,9 @@ export class ApplicationsStatsComponent implements OnInit {
         console.log(this.stats);
       }
     });
+  }
+
+  place(place){
+    return parseInt(place) + 1;
   }
 }

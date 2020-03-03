@@ -1,0 +1,62 @@
+.mat-card{
+    padding: 10px 10px;
+    margin: 5px 0px;
+}
+
+.stats .medal{
+    float: right;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.stats .medal .fa-medal{
+    font-size: 20px;
+    margin-left: -3px;
+}
+
+.stats .medal-0{
+    color: goldenrod;
+}
+.stats .medal-1{
+    color: silver;
+}
+.stats .medal-2{
+    color: #cd7f32;
+}
+
+.float-right{
+    float: right;
+    margin-right: 10px;
+}
+
+.stats h3{
+    margin: 5px 0px 0px;
+    float: left;
+}
+
+.stats span{
+    font-size: 0.8em;
+}
+
+.number{
+    font-size: 23px;
+    font-weight: bold;
+    margin: 2px 5px;
+    color: #7d7d7d;
+}
+
+.content-table div{
+    width: 14%;
+    float: left;
+    text-align: center;
+    border-left: 1px solid #d4d4d4;
+    margin-top: 7px;
+}
+
+.avatar_sm {
+    width: 35px;
+    height: 35px;
+    border-radius: 20px;
+    margin-top: 0px;
+    margin-bottom: -3px;
+}

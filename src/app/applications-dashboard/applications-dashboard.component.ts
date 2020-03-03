@@ -51,6 +51,8 @@ export class ApplicationsDashboardComponent implements OnInit, OnDestroy {
         this[method]();
       }
     });
+
+    this.getOldApps();
   }
 
   getApplications() {
@@ -150,6 +152,20 @@ export class ApplicationsDashboardComponent implements OnInit, OnDestroy {
       console.log(appOld.address);
       this.authService.migrateApp(appOld).subscribe(res => {
         console.log(res);
+      });
+    });
+  }
+
+  async getOldApps(){
+    this.dataService.getAllApps().subscribe(res => {
+      const oldApps: any[] = res;
+      oldApps.forEach(el => {
+        // console.log(el);
+        const query = `query { users(where: {fullName_contains: "${el.createBy}"}) {id, fullName}}`;
+        this.dataService.getData(query).subscribe(resUser => {
+          console.log(el);
+          console.log(resUser.data.users["0"]);
+        });
       });
     });
   }
