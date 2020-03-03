@@ -20,7 +20,7 @@ import { environment } from 'src/environments/environment.prod';
 })
 export class CreateUserComponent implements OnInit {
 
-  @ViewChild('avatarInput', {static: false}) avatarInput;
+  @ViewChild('avatarInput') avatarInput;
   public files: Set<File> = new Set();
 
   public loading = false;
