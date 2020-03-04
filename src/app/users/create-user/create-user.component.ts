@@ -131,11 +131,21 @@ export class CreateUserComponent implements OnInit {
     this.user.user.role = {
       name: this.createUserForm.value.isAdmin === true ? 'Administrator' : '',
     };
-    this.user.user.email = this.createUserForm.value.email;
-    this.user.user.username = this.createUserForm.value.email;
-    this.user.user.fullName = this.createUserForm.value.fullName;
+
+
     const password = this.createUserForm.value.password;
+    this.user.user.email = password ? this.user.user.email : this.createUserForm.value.email;
+    this.user.user.username = password ? this.user.user.email : this.createUserForm.value.email;
+    this.user.user.fullName = this.createUserForm.value.fullName;
     this.user.user.blocked = this.createUserForm.value.isBloked ? true : false;
+
+    // console.log(password);
+    // if (password) {
+    //   console.log(password);
+    //   this.user.user.email = this.user.user.email;
+    //   this.user.user.username = this.user.user.username;
+    // }
+
     this.authService.updateUser(this.user, password).subscribe(
       data => {
         if (this.avatar) {

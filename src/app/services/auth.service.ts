@@ -74,18 +74,22 @@ export class AuthService {
     }));
   }
 
-  updateUser(user: User, password) {
+  updateUser(user: User, passwd) {
     const roleId = user.user.role.name === 'Administrator' ? '5dc49d9292e8e019a58a5f74' : '5dc49d9292e8e019a58a5f75';
-    return this.http.put(`https://backend.apartmentsource.com/users/${user.user.id}`, {
+    const userData: {[k: string]: any} = {
       fullName: user.user.fullName,
       username: user.user.username,
       email: user.user.email,
       blocked: user.user.blocked,
-      ...(password && password),
       role: {
         _id: roleId
       }
-    }).pipe(map(newUser => {
+    };
+    if (passwd) {
+      userData.password = passwd;
+    }
+    console.log(userData);
+    return this.http.put(`https://backend.apartmentsource.com/users/${user.user.id}`, userData).pipe(map(newUser => {
       return newUser;
     }));
   }
