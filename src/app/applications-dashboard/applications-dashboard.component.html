@@ -1,5 +1,6 @@
 <div class="full-screen">
   <content id="full-screen">
+  <!-- <button mat-button (click)="getOldApps()">Migrated</button> -->
   <button mat-mini-fab (click)="openFullScreen()"><mat-icon>{{ !fullScreen ? 'fullscreen' : 'fullscreen_exit'}}</mat-icon></button>
   <div fxLayout="row wrap" fxLayoutAlign="space-evenly stretch" class="wrapper">
     <ng-container *ngFor="let item of apps">

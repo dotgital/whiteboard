@@ -20,7 +20,7 @@ export class ApplicationsStatsComponent implements OnInit {
 
   getStats(){
     const date = new Date();
-    const thisMonth = `${date.getFullYear()}-${('0' + (date.getMonth())).slice(-2)}-01`;
+    const thisMonth = `${date.getFullYear()}-${('0' + (date.getMonth() + 1)).slice(-2)}-01`;
     console.log(thisMonth);
     const query = `query{
         users(where: { applications: {createdAt_gte: "${thisMonth}"} }){
