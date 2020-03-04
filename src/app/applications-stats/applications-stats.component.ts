@@ -21,7 +21,7 @@ export class ApplicationsStatsComponent implements OnInit {
   getStats(){
     const date = new Date();
     const thisMonth = `${date.getFullYear()}-${('0' + (date.getMonth() + 1)).slice(-2)}-01`;
-    console.log(thisMonth);
+    // console.log(thisMonth);
     const query = `query{
         users(where: { applications: {createdAt_gte: "${thisMonth}"} }){
             id
@@ -29,13 +29,14 @@ export class ApplicationsStatsComponent implements OnInit {
             avatar{
               url
             }
-            applications(sort: "createdAt:desc"){
+            applications(where:  {createdAt_gte: "${thisMonth}"} ){
                 id
                 moneyIn
                 approved
                 invoiceOut
                 invoicePaid
                 createdAt
+                price
             }
         }
     }`;
@@ -54,11 +55,12 @@ export class ApplicationsStatsComponent implements OnInit {
             approved: element.applications.reduce((total, apps) => (apps.approved === true ? total + 1 : total), 0),
             invoiceOut: element.applications.reduce((total, apps) => (apps.invoiceOut === true ? total + 1 : total), 0),
             invoicePaid: element.applications.reduce((total, apps) => (apps.invoicePaid === true ? total + 1 : total), 0),
+            price: element.applications.reduce((total, apps) => (apps.price ? total + apps.price : total), 0),
           };
           this.stats.push(stats);
         });
         this.stats.sort((a,b) => (a.applications > b.applications) ? -1 : ((b.applications > a.applications) ? 1 : 0));
-        console.log(this.stats);
+        // console.log(this.stats);
       }
     });
   }
