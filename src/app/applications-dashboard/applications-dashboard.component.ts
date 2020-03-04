@@ -26,6 +26,7 @@ export class ApplicationsDashboardComponent implements OnInit, OnDestroy {
 
   applicatiosOld = [];
 
+  public loading = true;
   public loggedUser: Users;
   public message: string;
   public fullScreen = false;
@@ -113,6 +114,7 @@ export class ApplicationsDashboardComponent implements OnInit, OnDestroy {
 
       stats.sort((a, b) => (a.count > b.count) ? -1 : 1);
       this.topAgent = stats['0'].key;
+      this.loading = false;
     });
   }
 

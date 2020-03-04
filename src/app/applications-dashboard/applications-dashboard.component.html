@@ -1,4 +1,4 @@
-<div class="full-screen">
+<mat-progress-bar mode="indeterminate" *ngIf="loading" class="loading-top" color="warn"></mat-progress-bar><div class="full-screen">
   <content id="full-screen">
   <!-- <button mat-button (click)="getOldApps()">Migrated</button> -->
   <button mat-mini-fab (click)="openFullScreen()"><mat-icon>{{ !fullScreen ? 'fullscreen' : 'fullscreen_exit'}}</mat-icon></button>

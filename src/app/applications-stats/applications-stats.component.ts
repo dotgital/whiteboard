@@ -9,6 +9,7 @@ import { Component, OnInit } from '@angular/core';
 export class ApplicationsStatsComponent implements OnInit {
 
   public stats: any[] = [];
+  public loading = true;
 
   constructor(
     private dataService: DataService
@@ -60,6 +61,7 @@ export class ApplicationsStatsComponent implements OnInit {
           this.stats.push(stats);
         });
         this.stats.sort((a,b) => (a.applications > b.applications) ? -1 : ((b.applications > a.applications) ? 1 : 0));
+        this.loading = false;
         // console.log(this.stats);
       }
     });
