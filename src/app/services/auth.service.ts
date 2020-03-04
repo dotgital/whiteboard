@@ -88,7 +88,7 @@ export class AuthService {
     if (passwd) {
       userData.password = passwd;
     }
-    console.log(userData);
+    // console.log(userData);
     return this.http.put(`https://backend.apartmentsource.com/users/${user.user.id}`, userData).pipe(map(newUser => {
       return newUser;
     }));
