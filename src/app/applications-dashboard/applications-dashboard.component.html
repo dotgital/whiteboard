@@ -2,7 +2,7 @@
   <content id="full-screen">
   <!-- <button mat-button (click)="getOldApps()">Migrated</button> -->
   <button mat-mini-fab (click)="openFullScreen()"><mat-icon>{{ !fullScreen ? 'fullscreen' : 'fullscreen_exit'}}</mat-icon></button>
-  <div fxLayout="row wrap" fxLayoutAlign="space-evenly stretch" class="wrapper">
+  <div fxLayout="row wrap" fxLayoutAlign="start stretch" class="wrapper" fxLayoutGap="10px" style="margin-left: 10px;">
     <ng-container *ngFor="let item of apps">
       <mat-card 
       fxFlex="0 1 calc(25% - 10px)"
