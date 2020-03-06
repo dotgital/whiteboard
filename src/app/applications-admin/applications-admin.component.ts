@@ -24,6 +24,29 @@ export class ApplicationsAdminComponent implements OnInit, OnDestroy {
   public agents = [];
   public agentSelected: string;
 
+  public years = [
+    {display: '2019', value: '2019'},
+    {display: '2020', value: '2020'},
+    {display: '2021', value: '2021'},
+  ];
+  public months = [
+    {display: '01', value: '01'},
+    {display: '02', value: '02'},
+    {display: '03', value: '03'},
+    {display: '04', value: '04'},
+    {display: '05', value: '05'},
+    {display: '06', value: '06'},
+    {display: '07', value: '07'},
+    {display: '08', value: '08'},
+    {display: '09', value: '09'},
+    {display: '10', value: '10'},
+    {display: '11', value: '11'},
+    {display: '12', value: '12'},
+  ];
+
+  public selectedMonth: string;
+  public selectedYear: string;
+
   public dataSource: MatTableDataSource<Application>;
   public displayedColumns: string[] = ['address',
   'agent',
@@ -67,8 +90,18 @@ export class ApplicationsAdminComponent implements OnInit, OnDestroy {
     this.loading = true;
   }
 
+  filterByMonth(month) {
+    this.selectedMonth = month;
+    this.getApplications();
+  }
+
+  filteByYear(year) {
+    this.selectedMonth = this.selectedYear === undefined ? undefined : this.selectedMonth;
+    this.selectedYear = year;
+    this.getApplications();
+  }
+
   filteByAgent(agent) {
-    console.log(agent);
     this.agentSelected = agent;
     this.getApplications();
   }
@@ -117,17 +150,33 @@ export class ApplicationsAdminComponent implements OnInit, OnDestroy {
   }
 
   getApplications() {
+    const startMonth = this.selectedMonth !== undefined ? this.selectedMonth : '01';
+    const startYear = this.selectedYear !== undefined ? this.selectedYear : '2000';
+    const endMonth = this.selectedMonth !== undefined ? this.selectedMonth : '12';
+    const endYear = this.selectedYear !== undefined ? this.selectedYear : '2500';
+
+    // const createdStartAt = `${startYear}-${startMonth}-01`;
+    // const createdEndtAt = `${endYear}-${endMonth}-01`;
+    const createdStartAt = new Date(parseInt(startYear), parseInt(startMonth) - 1 , 1).toISOString().substr(0, 10);
+    const createdEndtAt = new Date(parseInt(endYear), parseInt(endMonth), 0).toISOString().substr(0, 10);
+    // console.log(createdStartAt);
+    // console.log(createdEndtAt);
+
     let where;
     if (this.agentSelected) {
       where = `{
         agent: "${this.agentSelected}",
         address_contains: "${this.search}",
         applicationType: "${this.applicationType}"
+        createdAt_gt: "${createdStartAt}"
+        createdAt_lt: "${createdEndtAt}"
       }`;
     } else {
       where = `{
         address_contains: "${this.search}",
         applicationType: "${this.applicationType}"
+        createdAt_gt: "${createdStartAt}"
+        createdAt_lt: "${createdEndtAt}"
       }`;
     }
 

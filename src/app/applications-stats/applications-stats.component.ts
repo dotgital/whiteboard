@@ -56,11 +56,11 @@ export class ApplicationsStatsComponent implements OnInit {
             approved: element.applications.reduce((total, apps) => (apps.approved === true ? total + 1 : total), 0),
             invoiceOut: element.applications.reduce((total, apps) => (apps.invoiceOut === true ? total + 1 : total), 0),
             invoicePaid: element.applications.reduce((total, apps) => (apps.invoicePaid === true ? total + 1 : total), 0),
-            price: element.applications.reduce((total, apps) => (apps.price ? total + apps.price : total), 0),
+            price: element.applications.reduce((total, apps) => (apps.price && apps.approved === true ? total + apps.price : total), 0),
           };
           this.stats.push(stats);
         });
-        this.stats.sort((a,b) => (a.applications > b.applications) ? -1 : ((b.applications > a.applications) ? 1 : 0));
+        this.stats.sort((a,b) => (a.approved > b.approved) ? -1 : ((b.approved > a.approved) ? 1 : 0));
         this.loading = false;
         // console.log(this.stats);
       }

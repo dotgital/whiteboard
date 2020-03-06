@@ -177,6 +177,11 @@ export class ApplicationsDashboardComponent implements OnInit, OnDestroy {
     //         applicationType = 'Buying';
     //       }
 
+
+    //       const date = el.createDate ? new Date(el.createDate).toISOString().slice(0, 10) : null;
+    //       const time = el.timestamp ? new Date(el.timestamp).toISOString().slice(11, 16) : null;
+    //       const createdAt = `${date} ${time}`;
+
     //       const agentId = resUser.data.users['0'] ? resUser.data.users['0'].id : '5e334f32e7071646dfd6dfba';
     //       const invoiceOut = el.invoiceOut ? el.invoiceOut : false;
     //       const moneyIn = el.moneyIn ? el.moneyIn : false;
@@ -190,7 +195,7 @@ export class ApplicationsDashboardComponent implements OnInit, OnDestroy {
     //       const approved = el.approved ? el.approved : false;
     //       const invoicePaid = el.invoicePaid ? el.invoicePaid : false;
     //       const denied = el.denied ? el.denied : false;
-    //       const createdAt = el.createDate ? new Date(el.createDate).toISOString().slice(0, 16) : null;
+    //       // const createdAt = el.createDate ? new Date(el.createDate).toISOString().slice(0, 16) : null;
 
     //       const newApp = {
     //         applicationType,
@@ -212,11 +217,11 @@ export class ApplicationsDashboardComponent implements OnInit, OnDestroy {
     //         }
     //       };
 
-    //       if(!el.__typename){
-    //         this.http.post('https://backend.apartmentsource.com/applications', newApp).pipe(map(newUser => {
-    //           return newUser;
-    //         })).subscribe(resp => console.log(resp));
-    //       }
+    //       // if(!el.__typename){
+    //       //   this.http.post('https://backend.apartmentsource.com/applications', newApp).pipe(map(newUser => {
+    //       //     return newUser;
+    //       //   })).subscribe(resp => console.log(resp));
+    //       // }
 
     //     });
     //   });

@@ -61,6 +61,7 @@ import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
 import { ApplicationsAdminComponent } from './applications-admin/applications-admin.component';
 import { MessageComponent } from './applications-dashboard/message/message.component';
 import { ApplicationsStatsComponent } from './applications-stats/applications-stats.component';
+import { ResetPasswordComponent } from './reset-password/reset-password.component';
 
 const config: SocketIoConfig = { url: 'https://backend.apartmentsource.com', options: {query: {userId: null}} };
 
@@ -85,6 +86,7 @@ const config: SocketIoConfig = { url: 'https://backend.apartmentsource.com', opt
     ApplicationsAdminComponent,
     MessageComponent,
     ApplicationsStatsComponent,
+    ResetPasswordComponent,
   ],
   imports: [
     FormsModule,

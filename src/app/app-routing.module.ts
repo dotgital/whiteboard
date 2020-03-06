@@ -1,3 +1,4 @@
+import { ResetPasswordComponent } from './reset-password/reset-password.component';
 import { ApplicationsStatsComponent } from './applications-stats/applications-stats.component';
 import { ApplicationsAdminComponent } from './applications-admin/applications-admin.component';
 import { ManageApplicationsComponent } from './applications/manage-applications/manage-applications.component';
@@ -18,6 +19,7 @@ const routes: Routes = [
   { path: '', redirectTo: 'dashboard/applications-dashboard', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
   { path: 'forgot-password', component: ForgotPasswordComponent },
+  { path: 'reset-password', component: ResetPasswordComponent },
   { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard], children: [
     { path: 'register', component: RegisterComponent },
     { path: 'forms', component: FormListComponent },
