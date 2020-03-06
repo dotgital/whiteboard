@@ -43,8 +43,32 @@
     </div>
     <div style="padding: 5px 10px;">
         <ng-container  *ngFor="let item of stats | keyvalue">
-            <div fxLayout="row" fxLayoutAlign="space-evenly stretch" style="margin-bottom: 5px;" *ngIf="item.key > 2">
-                <div gdAreas="number avatar content" gdGap="5px" gdRows="auto" gdColumns="20px 35px auto"
+            <div fxLayout="row" fxLayoutAlign="space-evenly stretch" style="margin-bottom: 5px;" *ngIf="item.key > 2 && item.key < 10">
+                <div gdAreas="number avatar content" gdGap="5px" gdRows="auto" gdColumns="35px 35px auto"
+                class="mat-elevation-z4" fxFill style="background: #fff; padding: 5px">
+                    <div gdArea="number" class="number">
+                        {{place(item.key)}}
+                    </div>
+                    <div gdArea="avatar" class="avatar-container">
+                        <img class="avatar_sm" src="https://backend.apartmentsource.com{{item.value.avatar}}"
+                            *ngIf="item.value.avatar" />
+                        <img class="avatar_sm" src="'../../../../assets/avatar.svg" *ngIf="!item.value.avatar" />
+                    </div>
+                    <div gdArea="content" class="content-table">
+                        <div style="text-align: left;"><b>{{item.value.name}}</b></div>
+                        <div>Applications: {{item.value.applications}} </div>
+                        <div>Money In: {{item.value.moneyIn}}</div>
+                        <div>Approved: {{item.value.approved}}</div>
+                        <div>Invoice Out: {{item.value.invoiceOut}}</div>
+                        <div>Incoice Paid: {{item.value.invoicePaid}}</div>
+                        <div>Price: ${{item.value.price}} </div>
+                    </div>
+                </div>
+            </div>
+        </ng-container>
+        <ng-container  *ngFor="let item of stats | keyvalue">
+            <div fxLayout="row" fxLayoutAlign="space-evenly stretch" style="margin-bottom: 5px;" *ngIf="item.key > 9">
+                <div gdAreas="number avatar content" gdGap="5px" gdRows="auto" gdColumns="35px 35px auto"
                 class="mat-elevation-z4" fxFill style="background: #fff; padding: 5px">
                     <div gdArea="number" class="number">
                         {{place(item.key)}}

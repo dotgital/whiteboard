@@ -160,72 +160,72 @@ export class ApplicationsDashboardComponent implements OnInit, OnDestroy {
   }
 
   getOldApps(){
-    // this.dataService.getAllApps().subscribe(res => {
-    //   const oldApps: any[] = res;
-    //   oldApps.forEach(el => {
-    //     // console.log(el);
-    //     const query = `query { users(where: {fullName_contains: "${el.createBy}"}) {id, fullName}}`;
-    //     this.dataService.getData(query).subscribe(resUser => {
-    //       // console.log(el);
+    this.dataService.getAllApps().subscribe(res => {
+      const oldApps: any[] = res;
+      oldApps.forEach(el => {
+        // console.log(el);
+        const query = `query { users(where: {fullName_contains: "${el.createBy}"}) {id, fullName}}`;
+        this.dataService.getData(query).subscribe(resUser => {
+          // console.log(el);
 
-    //       let applicationType;
-    //       if(el.appType == 'Lease' || el.appType == undefined){
-    //         applicationType = 'Leasing';
-    //       } else if (el.appType == 'Sale' && el.saleType == 'Listing') {
-    //         applicationType = 'Listing';
-    //       } else if (el.appType == 'Sale' && el.saleType == 'Buying') {
-    //         applicationType = 'Buying';
-    //       }
+          let applicationType;
+          if(el.appType == 'Lease' || el.appType == undefined){
+            applicationType = 'Leasing';
+          } else if (el.appType == 'Sale' && el.saleType == 'Listing') {
+            applicationType = 'Listing';
+          } else if (el.appType == 'Sale' && el.saleType == 'Buying') {
+            applicationType = 'Buying';
+          }
 
 
-    //       const date = el.createDate ? new Date(el.createDate).toISOString().slice(0, 10) : null;
-    //       const time = el.timestamp ? new Date(el.timestamp).toISOString().slice(11, 16) : null;
-    //       const createdAt = `${date} ${time}`;
+          const date = el.createDate ? new Date(el.createDate).toISOString().slice(0, 10) : null;
+          const time = el.timestamp ? new Date(el.timestamp).toISOString().slice(11, 16) : null;
+          const createdAt = `${date} ${time}`;
 
-    //       const agentId = resUser.data.users['0'] ? resUser.data.users['0'].id : '5e334f32e7071646dfd6dfba';
-    //       const invoiceOut = el.invoiceOut ? el.invoiceOut : false;
-    //       const moneyIn = el.moneyIn ? el.moneyIn : false;
-    //       const listingAgreement = el.listingAgreement ? el.listingAgreement : false;
-    //       const price = el.price ? el.price : 0;
-    //       const offerExecuted = el.offerExecuted ? el.offerExecuted : false;
-    //       const closed = el.closed ? el.closed : false;
-    //       const paid = el.completed ? el.completed : false;
-    //       const offerOut = el.offerOut ? el.offerOut : false;
-    //       const address = el.address ? el.address : '';
-    //       const approved = el.approved ? el.approved : false;
-    //       const invoicePaid = el.invoicePaid ? el.invoicePaid : false;
-    //       const denied = el.denied ? el.denied : false;
-    //       // const createdAt = el.createDate ? new Date(el.createDate).toISOString().slice(0, 16) : null;
+          const agentId = resUser.data.users['0'] ? resUser.data.users['0'].id : '5e334f32e7071646dfd6dfba';
+          const invoiceOut = el.invoiceOut ? el.invoiceOut : false;
+          const moneyIn = el.moneyIn ? el.moneyIn : false;
+          const listingAgreement = el.listingAgreement ? el.listingAgreement : false;
+          const price = el.price ? el.price : 0;
+          const offerExecuted = el.offerExecuted ? el.offerExecuted : false;
+          const closed = el.closed ? el.closed : false;
+          const paid = el.completed ? el.completed : false;
+          const offerOut = el.offerOut ? el.offerOut : false;
+          const address = el.address ? el.address : '';
+          const approved = el.approved ? el.approved : false;
+          const invoicePaid = el.invoicePaid ? el.invoicePaid : false;
+          const denied = el.denied ? el.denied : false;
+          // const createdAt = el.createDate ? new Date(el.createDate).toISOString().slice(0, 16) : null;
 
-    //       const newApp = {
-    //         applicationType,
-    //         invoiceOut,
-    //         moneyIn,
-    //         listingAgreement,
-    //         price,
-    //         offerExecuted,
-    //         closed,
-    //         paid,
-    //         offerOut,
-    //         address,
-    //         approved,
-    //         invoicePaid,
-    //         denied,
-    //         createdAt,
-    //         agent: {
-    //           _id: agentId
-    //         }
-    //       };
+          const newApp = {
+            applicationType,
+            invoiceOut,
+            moneyIn,
+            listingAgreement,
+            price,
+            offerExecuted,
+            closed,
+            paid,
+            offerOut,
+            address,
+            approved,
+            invoicePaid,
+            denied,
+            createdAt,
+            agent: {
+              _id: agentId
+            }
+          };
 
-    //       // if(!el.__typename){
-    //       //   this.http.post('https://backend.apartmentsource.com/applications', newApp).pipe(map(newUser => {
-    //       //     return newUser;
-    //       //   })).subscribe(resp => console.log(resp));
-    //       // }
+          // if(!el.__typename){
+          //   this.http.post('https://backend.apartmentsource.com/applications', newApp).pipe(map(newUser => {
+          //     return newUser;
+          //   })).subscribe(resp => console.log(resp));
+          // }
 
-    //     });
-    //   });
-    // });
+        });
+      });
+    });
   }
 
   ngOnDestroy(): void {

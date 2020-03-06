@@ -60,14 +60,19 @@ export class ApplicationsStatsComponent implements OnInit {
           };
           this.stats.push(stats);
         });
-        this.stats.sort((a,b) => (a.approved > b.approved) ? -1 : ((b.approved > a.approved) ? 1 : 0));
+        this.stats.sort(this.sortPlaces);
         this.loading = false;
         // console.log(this.stats);
       }
     });
   }
 
+  sortPlaces(a, b) {
+    return parseInt(b.approved) - parseInt(a.approved)
+  }
+
   place(place){
+    // console.log(place);
     return parseInt(place) + 1;
   }
 }
