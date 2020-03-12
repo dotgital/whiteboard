@@ -44,7 +44,7 @@ export class CreateApplicationComponent implements OnInit {
     commissionPorcentage: new FormControl(null),
     applicationFeeNumber: new FormControl(null),
     applicationFeeAmount: new FormControl(null),
-    applicationFeeTotal: new FormControl(null),
+    applicationFeeTotal: new FormControl({value: null, disabled: true}),
     notes: new FormControl(null),
     bonuses: new FormControl(null),
     landlordCommissionRate: new FormControl(null),
@@ -116,9 +116,13 @@ export class CreateApplicationComponent implements OnInit {
   }
 
   onCommissionChange(e) {
-    const template1 = this.emailTemplate.set('marcel');
-    // console.log(template1);
     this.commissionType = e.value;
     // console.log(e);
+  }
+
+  calculateTotal() {
+    console.log(this.createApplicationForm.value.applicationFeeNumber);
+    const total = this.createApplicationForm.value.applicationFeeNumber * this.createApplicationForm.value.applicationFeeAmount;
+    this.createApplicationForm.patchValue({applicationFeeTotal: total});
   }
 }

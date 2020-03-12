@@ -94,10 +94,10 @@
       <div fxLayout="row" fxLayoutGap="10px">
         <mat-form-field fxFlex="33" *ngIf="commissionType === 'Commission Form'">
           <mat-label>Application Fees</mat-label>
-          <input type="number" matInput formControlName="applicationFeeNumber">
+          <input type="number" matInput formControlName="applicationFeeNumber" (keyup)="calculateTotal()" >
         </mat-form-field>
 
-        <mat-form-field fxFlex="34" *ngIf="commissionType === 'Commission Form'">
+        <mat-form-field fxFlex="34" *ngIf="commissionType === 'Commission Form'" (keyup)="calculateTotal()">
           <span matPrefix>$ &nbsp;</span>
           <mat-label>At</mat-label>
           <input type="number" matInput formControlName="applicationFeeAmount">
