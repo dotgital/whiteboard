@@ -108,7 +108,7 @@ export class CreateApplicationComponent implements OnInit {
   }
 
   sendEmailNotification() {
-    ['marcelcruz85@gmail.com', 'support@dotgital.com'].forEach(el => {
+    ['deals@apartmentsourcechicago.com', `${this.user.user.email}`].forEach(el => {
       this.dataService.sendNotification(this.createApplicationForm.value, this.user, el).subscribe(res => {
         console.log(res);
       });
