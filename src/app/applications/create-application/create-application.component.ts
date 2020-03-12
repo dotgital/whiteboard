@@ -1,9 +1,12 @@
+import { User } from './../../models/user';
+import { EmailTemplates } from './../../models/emailTemplates';
 import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { DataService } from '../../data.service';
 import { AuthService } from './../../services/auth.service';
 import { Application } from 'src/app/applications/application';
+const template = require ('src/assets/commission_template.js');
 
 @Component({
   selector: 'app-create-application',
@@ -20,10 +23,14 @@ export class CreateApplicationComponent implements OnInit {
   public date: string;
   public appType: string;
   private userId: string;
+  public commissionType: string;
+  public emailTemplate = new EmailTemplates();
+  public user: User;
 
   createApplicationForm = new FormGroup({
     address: new FormControl('', Validators.required),
     price: new FormControl('', Validators.required),
+    commissionType: new FormControl('', Validators.required),
     moneyIn: new FormControl(false),
     approved: new FormControl(false),
     denied: new FormControl(false),
@@ -31,6 +38,17 @@ export class CreateApplicationComponent implements OnInit {
     listingAgreement: new FormControl(false),
     offerExecuted: new FormControl(false),
     closed: new FormControl(false),
+    tenant: new FormControl(null),
+    landlord: new FormControl(null),
+    monthRent: new FormControl(null),
+    commissionPorcentage: new FormControl(null),
+    applicationFeeNumber: new FormControl(null),
+    applicationFeeAmount: new FormControl(null),
+    applicationFeeTotal: new FormControl(null),
+    notes: new FormControl(null),
+    bonuses: new FormControl(null),
+    landlordCommissionRate: new FormControl(null),
+
     // invoicePaid: new FormControl(''),
   });
 
@@ -46,6 +64,7 @@ export class CreateApplicationComponent implements OnInit {
   ngOnInit() {
     const user = this.authService.currentUserValue;
     this.userId = user.user.id;
+    this.user = user;
     this.appType = this.data.applicationType;
     console.log(this.data.applicationType);
   }
@@ -83,7 +102,23 @@ export class CreateApplicationComponent implements OnInit {
 
     this.dataService.createData(appData)
     .subscribe(res => {
+      this.sendEmailNotification();
       this.dialogRef.close();
     });
+  }
+
+  sendEmailNotification() {
+    ['marcelcruz85@gmail.com', 'support@dotgital.com'].forEach(el => {
+      this.dataService.sendNotification(this.createApplicationForm.value, this.user, el).subscribe(res => {
+        console.log(res);
+      });
+    });
+  }
+
+  onCommissionChange(e) {
+    const template1 = this.emailTemplate.set('marcel');
+    // console.log(template1);
+    this.commissionType = e.value;
+    // console.log(e);
   }
 }

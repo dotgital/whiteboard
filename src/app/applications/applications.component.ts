@@ -157,7 +157,7 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
 
   createApp(): void {
     const dialogRef = this.dialog.open(CreateApplicationComponent, {
-      width: '550px',
+      width: '650px',
       data: {data: this.applicationData, applicationType: this.applicationType}
     });
 
@@ -180,6 +180,17 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
   }
 
   updateApp(app: Application, field) {
+    console.log(app)
+    console.log(field)
+    // const email = {
+    //   to: 'marcelcruz85@gmail.com',
+    //   data: 'this is the email body',
+    //   subject: 'this is the email subject',
+    // };
+    // this.dataService.sendNotification(email).subscribe(res => {
+    //   console.log(res);
+    // });
+
     if (this.editing.includes(app.id)) {
       this.loading = true;
       app[field] = !app[field];

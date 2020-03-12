@@ -58,6 +58,8 @@ export class ApplicationsDashboardComponent implements OnInit, OnDestroy {
   }
 
   getApplications() {
+    const date = new Date();
+    const thisMonth = `${date.getFullYear()}-${('0' + (date.getMonth() + 1)).slice(-2)}-01`;
     const where = `{
       paid_ne: true,
     }`;
@@ -87,33 +89,31 @@ export class ApplicationsDashboardComponent implements OnInit, OnDestroy {
                 }
             }
         }
-        applicationsConnection {
-          groupBy {
-            agent {
-              key
-              connection {
-                  aggregate {
-                      count
-                  }
-              }
-            }
+        users(where: { applications: {createdAt_gte: "${thisMonth}"} }){
+          id
+          fullName
+          applications (where: {createdAt_gte: "${thisMonth}"} ){
+            id
           }
         }
     }`;
 
     this.dataService.getData(query).subscribe(res => {
+      // console.log(res);
       this.apps = res.data.applications;
-      const agentStats: [] = res.data.applicationsConnection.groupBy.agent;
+      const agentStats: [] = res.data.users;
       const stats = [];
 
       agentStats.forEach((el: any) => {
-        const key = el.key;
-        const count = el.connection.aggregate.count;
-        stats.push({key, count});
+        const id = el.id;
+        const users: [] = el.applications;
+        const count = users.length;
+        stats.push({id, count});
       });
 
+      // console.log(stats);
       stats.sort((a, b) => (a.count > b.count) ? -1 : 1);
-      this.topAgent = stats['0'].key;
+      this.topAgent = stats['0'].id;
       this.loading = false;
     });
   }

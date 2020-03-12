@@ -48,6 +48,7 @@ import { ForgotPasswordComponent } from './forgot-password/forgot-password.compo
 import { UsersComponent } from './users/users.component';
 import { CreateUserComponent } from './users/create-user/create-user.component';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
+import {TextFieldModule} from '@angular/cdk/text-field';
 import { ScrollingModule } from '@angular/cdk/scrolling';
 import { ApplicationsComponent } from './applications/applications.component';
 import { CreateApplicationComponent } from './applications/create-application/create-application.component';
@@ -117,6 +118,7 @@ const config: SocketIoConfig = { url: 'https://backend.apartmentsource.com', opt
     MatTableModule,
     MatInputModule,
     MatRadioModule,
+    TextFieldModule,
     HttpClientModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,

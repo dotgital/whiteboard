@@ -25,19 +25,102 @@
       <mat-radio-button value="Buying" class="margin" (click)="saleType = 'Buying'">Buying</mat-radio-button>
     </mat-radio-group>
   </div> -->
+  <div fxLayout="row"  fxLayoutGap="10px">
+    <mat-form-field class="full-width" fxFlex="80">
+      <mat-label>Address</mat-label>
+      <input matInput formControlName="address">
+      <mat-icon matSuffix>name</mat-icon>
+      <mat-error *ngIf="createApplicationForm.controls['address'].errors && createApplicationForm.controls['address'].errors.required">Required</mat-error>
+    </mat-form-field>
 
-    <mat-form-field class="full-width">
-        <mat-label>Address</mat-label>
-        <input matInput formControlName="address">
-        <mat-icon matSuffix>name</mat-icon>
-        <mat-error *ngIf="createApplicationForm.controls['address'].errors && createApplicationForm.controls['address'].errors.required">Required</mat-error>
-      </mat-form-field>
-      <div fxLayout="column" fxLayoutAlign="start start" fxLayoutGap="10px">
-          <mat-form-field>
-              <mat-label>Price</mat-label>
-              <span matPrefix>$ &nbsp;</span>
-              <input type="number" matInput formControlName="price">
+    <mat-form-field fxFlex="20">
+      <mat-label>Price</mat-label>
+      <span matPrefix>$ &nbsp;</span>
+      <input type="number" matInput formControlName="price">
+    </mat-form-field>
+
+  </div>
+   
+      <div fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="10px">
+            <mat-form-field  fxFlex="50">
+            <mat-select placeholder="Commission Type" formControlName="commissionType" (selectionChange)="onCommissionChange($event)" name="item">
+              <mat-option value="Invoice">
+                Invoice
+              </mat-option>
+              <mat-option value="Commission Form">
+                Commission Form
+              </mat-option>
+            </mat-select>
             </mat-form-field>
+      </div>
+      <div fxLayout="row" fxLayoutGap="10px">
+        <mat-form-field fxFlex="50" *ngIf="commissionType === 'Commission Form' || commissionType === 'Invoice'">
+          <mat-label>Tenant</mat-label>
+          <input type="text" matInput formControlName="tenant">
+        </mat-form-field>
+
+        <mat-form-field fxFlex="50" *ngIf="commissionType === 'Commission Form' || commissionType === 'Invoice'" >
+          <mat-label>Landlord/Management Company</mat-label>
+          <input type="text" matInput formControlName="landlord">
+        </mat-form-field>
+      </div>
+
+      <div fxLayout="row" fxLayoutGap="10px">
+        <mat-form-field fxFlex="50" *ngIf="commissionType === 'Commission Form'">
+          <span matPrefix>$ &nbsp;</span>
+          <mat-label>1st Month's Rent Amount</mat-label>
+          <input type="number" matInput formControlName="monthRent">
+        </mat-form-field>
+
+        <mat-form-field fxFlex="50" *ngIf="commissionType === 'Commission Form'">
+          <span matPrefix>% &nbsp;</span>
+          <mat-label>TAS Commission</mat-label>
+          <input type="number" matInput formControlName="commissionPorcentage">
+        </mat-form-field>
+
+        <mat-form-field fxFlex="50" *ngIf="commissionType === 'Invoice'">
+          <span matPrefix>$ &nbsp;</span>
+          <mat-label>Bonuses</mat-label>
+          <input type="number" matInput formControlName="bonuses">
+        </mat-form-field>
+
+        <mat-form-field fxFlex="50" *ngIf="commissionType === 'Invoice'">
+          <span matPrefix>% &nbsp;</span>
+          <mat-label>Landlord Commission Rate</mat-label>
+          <input type="number" matInput formControlName="landlordCommissionRate">
+        </mat-form-field>
+      </div>
+
+      <div fxLayout="row" fxLayoutGap="10px">
+        <mat-form-field fxFlex="33" *ngIf="commissionType === 'Commission Form'">
+          <mat-label>Application Fees</mat-label>
+          <input type="number" matInput formControlName="applicationFeeNumber">
+        </mat-form-field>
+
+        <mat-form-field fxFlex="34" *ngIf="commissionType === 'Commission Form'">
+          <span matPrefix>$ &nbsp;</span>
+          <mat-label>At</mat-label>
+          <input type="number" matInput formControlName="applicationFeeAmount">
+        </mat-form-field>
+
+        <mat-form-field fxFlex="33" *ngIf="commissionType === 'Commission Form'">
+          <span matPrefix>$ &nbsp;</span>
+          <mat-label>Total</mat-label>
+          <input type="number" matInput formControlName="applicationFeeTotal">
+        </mat-form-field>
+      </div>
+
+      <div fxLayout="row">
+        <mat-form-field fxFlex="100" *ngIf="commissionType === 'Commission Form'">
+          <mat-label>Notes</mat-label>
+          <textarea matInput
+                    formControlName="notes"
+                    cdkTextareaAutosize
+                    #autosize="cdkTextareaAutosize"
+                    cdkAutosizeMinRows="2"
+                    cdkAutosizeMaxRows="5"></textarea>
+        </mat-form-field>
+      </div>
         <div *ngIf="appType == 'Leasing'">
           <mat-checkbox color="primary" formControlName="moneyIn">Money In</mat-checkbox><br>
           <mat-checkbox color="primary" formControlName="approved">Approved</mat-checkbox><br>
@@ -55,7 +138,6 @@
         </div>
           <!-- <mat-checkbox color="primary" formControlName="invoiceOut">Invoice Out</mat-checkbox>
           <mat-checkbox color="primary" formControlName="invoicePaid">Invoice Paid</mat-checkbox> -->
-      </div>
 </div>
 
   <div mat-dialog-actions fxLayout="row" fxLayoutGap="20px" fxLayoutAlign="space-evenly center" class="margin-botton">
