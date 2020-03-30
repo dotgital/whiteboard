@@ -102,18 +102,18 @@ export class CreateApplicationComponent implements OnInit {
 
     this.dataService.createData(appData)
     .subscribe(res => {
-      this.sendEmailNotification();
+      // this.sendEmailNotification();
       this.dialogRef.close();
     });
   }
 
-  sendEmailNotification() {
-    ['deals@apartmentsourcechicago.com', `${this.user.user.email}`].forEach(el => {
-      this.dataService.sendNotification(this.createApplicationForm.value, this.user, el).subscribe(res => {
-        console.log(res);
-      });
-    });
-  }
+  // sendEmailNotification() {
+  //   ['deals@apartmentsourcechicago.com', `${this.user.user.email}`].forEach(el => {
+  //     this.dataService.sendNotification(this.createApplicationForm.value, this.user, el).subscribe(res => {
+  //       console.log(res);
+  //     });
+  //   });
+  // }
 
   onCommissionChange(e) {
     this.commissionType = e.value;
