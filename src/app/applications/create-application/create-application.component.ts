@@ -30,7 +30,7 @@ export class CreateApplicationComponent implements OnInit {
   createApplicationForm = new FormGroup({
     address: new FormControl('', Validators.required),
     price: new FormControl('', Validators.required),
-    commissionType: new FormControl('', Validators.required),
+    commissionType: new FormControl(null),
     moneyIn: new FormControl(false),
     approved: new FormControl(false),
     denied: new FormControl(false),
