@@ -18,6 +18,8 @@
           <img class="avatar_smm" src="https://backend.apartmentsource.com/{{item.agent.avatar['0'].url}}" *ngIf="item.agent.avatar['0'] && item.agent.avatar['0'].url" />
           <img class="avatar_smm" src="'../../../../assets/avatar.svg" *ngIf="!item.agent.avatar['0']" />
           <mat-icon *ngIf="item.agent.id == topAgent" class="top-agent-star">grade</mat-icon>
+          <mat-icon *ngIf="topAgentGross == topAgentGross && item.agent.id == topAgentGross" class="top-agent-gross-star">grade</mat-icon>
+          <mat-icon *ngIf="topAgentGross != topAgentGross && item.agent.id == topAgentGross" class="top-agent-gross-star-left">grade</mat-icon>
         </div>
         <div gdArea="content">
           <h4 class="address">{{ item.address }}</h4><span class="create-by"> {{ item.agent.fullName }} - {{ item.createdAt | date:"MM/dd/yyyy" }}</span> <br />

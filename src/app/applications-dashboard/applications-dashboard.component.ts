@@ -33,6 +33,7 @@ export class ApplicationsDashboardComponent implements OnInit, OnDestroy {
   public user: any;
 
   public topAgent: string;
+  public topAgentGross: string;
   public apps: any[];
   constructor(
     public dialog: MatDialog,
@@ -94,6 +95,9 @@ export class ApplicationsDashboardComponent implements OnInit, OnDestroy {
           fullName
           applications (where: {createdAt_gte: "${thisMonth}"} ){
             id
+            price
+            approved
+            applicationType
           }
         }
     }`;
@@ -108,12 +112,15 @@ export class ApplicationsDashboardComponent implements OnInit, OnDestroy {
         const id = el.id;
         const users: [] = el.applications;
         const count = users.length;
-        stats.push({id, count});
+        const gross = users.reduce((total, apps: any) => (apps.price && apps.approved === true ? total + apps.price : total), 0);
+        stats.push({id, count, gross});
       });
 
-      // console.log(stats);
-      stats.sort((a, b) => (a.count > b.count) ? -1 : 1);
-      this.topAgent = stats['0'].id;
+      console.log(stats);
+      const topAgentGross = stats.sort((a, b) => (a.gross > b.gross) ? -1 : 1);
+      this.topAgentGross = topAgentGross['0'].id;
+      const topAgent = stats.sort((a, b) => (a.count > b.count) ? -1 : 1);
+      this.topAgent = topAgent['0'].id;
       this.loading = false;
     });
   }
