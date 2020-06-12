@@ -157,7 +157,7 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
 
   createApp(): void {
     const dialogRef = this.dialog.open(CreateApplicationComponent, {
-      width: '650px',
+      width: '550px',
       data: {data: this.applicationData, applicationType: this.applicationType}
     });
 
