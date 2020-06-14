@@ -132,6 +132,9 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
             denied,
             listingAgreement,
             offerOut,
+            invoiceOut,
+            invoicePaid,
+            paid,
             offerExecuted,
             closed,
             moneyIn,
@@ -155,7 +158,8 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
     });
   }
 
-  createApp(): void {
+  createApp(row): void {
+    this.applicationData = row;
     const dialogRef = this.dialog.open(CreateApplicationComponent, {
       width: '550px',
       data: {data: this.applicationData, applicationType: this.applicationType}

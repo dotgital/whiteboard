@@ -1,5 +1,5 @@
 <mat-progress-bar mode="indeterminate" *ngIf="loading" class="modal-loading"></mat-progress-bar>
-<form [formGroup]="createApplicationForm" (ngSubmit)="createApplication()">
+<form [formGroup]="createApplicationForm">
 
   <div fxLayout="row" fxLayoutAlign="center center">
     <h1 mat-dialog-title>Submit a new application</h1>
@@ -40,6 +40,55 @@
     </mat-form-field>
 
   </div>
+  <div fxLayout="row">
+    <div fxLayout="column" fxLayoutAlign="start start" fxFlex="48">
+      <div *ngIf="appType == 'Leasing'">
+        <mat-checkbox color="primary" formControlName="moneyIn">Money In</mat-checkbox><br>
+        <mat-checkbox color="primary" formControlName="approved">Approved</mat-checkbox><br>
+        <mat-checkbox color="primary" formControlName="denied">Denied</mat-checkbox>
+      </div>
+      <div *ngIf="appType == 'Listing'">
+        <mat-checkbox color="primary" formControlName="listingAgreement">Listing Agreement</mat-checkbox><br>
+        <mat-checkbox color="primary" formControlName="offerExecuted">Offer Executed</mat-checkbox><br>
+        <mat-checkbox color="primary" formControlName="closed">Closed</mat-checkbox>
+      </div>
+      <div *ngIf="appType == 'Buying'">
+        <mat-checkbox color="primary" formControlName="offerOut">Offer out</mat-checkbox><br>
+        <mat-checkbox color="primary" formControlName="offerExecuted">Offer Executed</mat-checkbox><br>
+        <mat-checkbox color="primary" formControlName="closed">Closed</mat-checkbox>
+      </div>
+    </div>
+    <div fxLayout="column" fxLayoutAlign="start start" fxFlex="48">
+      <div *ngIf="updating && userRole === 'Administrator'">
+        <mat-checkbox color="primary" formControlName="invoiceOut">Invoice Out</mat-checkbox><br>
+        <mat-checkbox color="primary" formControlName="invoicePaid">Invoice Paid</mat-checkbox><br>
+        <mat-checkbox color="primary" formControlName="paid">Paid</mat-checkbox><br>
+      </div>
+    </div>
+  </div>
+          <!-- <mat-checkbox color="primary" formControlName="invoiceOut">Invoice Out</mat-checkbox>
+          <mat-checkbox color="primary" formControlName="invoicePaid">Invoice Paid</mat-checkbox> -->
+</div>
+
+  <div mat-dialog-actions fxLayout="row" fxLayoutGap="10px" fxLayoutAlign="end end" class="margin-botton" style="padding-bottom: 0px;">
+    <button mat-flat-button color="warn" *ngIf="updating" (click)="deleteApp()" ><mat-icon style="font-size: 21px; margin: 0px 5px 0px -5px;" >delete</mat-icon>Delete</button>
+    <div fxFlex></div>
+    <a mat-stroked-button (click)="onNoClick()" color="primary">Cancel</a>
+    <button mat-flat-button color="primary" [disabled]="!createApplicationForm.valid" *ngIf="!updating" (click)="createApplication()">Create</button>
+    <button mat-flat-button color="primary" [disabled]="!createApplicationForm.valid" *ngIf="updating" (click)="updateApplication()">Update</button>
+    <!-- <button mat-button [mat-dialog-close]="data" cdkFocusInitial>Ok</button> -->
+  </div>
+</form>
+<!-- <div class="loading-spinner">
+    <mat-progress-spinner
+    class="example-margin"
+    color="white"
+    mode="indeterminate"
+    value="50">
+    </mat-progress-spinner>
+</div> -->
+
+
    
       <!-- <div fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="10px">
             <mat-form-field  fxFlex="50">
@@ -121,38 +170,3 @@
                     cdkAutosizeMaxRows="5"></textarea>
         </mat-form-field>
       </div> -->
-        <div *ngIf="appType == 'Leasing'">
-          <mat-checkbox color="primary" formControlName="moneyIn">Money In</mat-checkbox><br>
-          <mat-checkbox color="primary" formControlName="approved">Approved</mat-checkbox><br>
-          <mat-checkbox color="primary" formControlName="denied">Denied</mat-checkbox>
-        </div>
-        <div *ngIf="appType == 'Listing'">
-          <mat-checkbox color="primary" formControlName="listingAgreement">Listing Agreement</mat-checkbox><br>
-          <mat-checkbox color="primary" formControlName="offerExecuted">Offer Executed</mat-checkbox><br>
-          <mat-checkbox color="primary" formControlName="closed">Closed</mat-checkbox>
-        </div>
-        <div *ngIf="appType == 'Buying'">
-          <mat-checkbox color="primary" formControlName="offerOut">Offer out</mat-checkbox><br>
-          <mat-checkbox color="primary" formControlName="offerExecuted">Offer Executed</mat-checkbox><br>
-          <mat-checkbox color="primary" formControlName="closed">Closed</mat-checkbox>
-        </div>
-          <!-- <mat-checkbox color="primary" formControlName="invoiceOut">Invoice Out</mat-checkbox>
-          <mat-checkbox color="primary" formControlName="invoicePaid">Invoice Paid</mat-checkbox> -->
-</div>
-
-  <div mat-dialog-actions fxLayout="row" fxLayoutGap="20px" fxLayoutAlign="space-evenly center" class="margin-botton">
-      <button mat-flat-button color="primary" [disabled]="!createApplicationForm.valid" fxFlex>Create
-
-      </button>
-      <a mat-stroked-button (click)="onNoClick()" color="primary" fxFlex>Cancel</a>
-      <!-- <button mat-button [mat-dialog-close]="data" cdkFocusInitial>Ok</button> -->
-  </div>
-</form>
-<!-- <div class="loading-spinner">
-    <mat-progress-spinner
-    class="example-margin"
-    color="white"
-    mode="indeterminate"
-    value="50">
-    </mat-progress-spinner>
-</div> -->

@@ -26,6 +26,8 @@ export class CreateApplicationComponent implements OnInit {
   public commissionType: string;
   public emailTemplate = new EmailTemplates();
   public user: User;
+  public updating = false;
+  public userRole: string;
 
   createApplicationForm = new FormGroup({
     address: new FormControl('', Validators.required),
@@ -37,6 +39,9 @@ export class CreateApplicationComponent implements OnInit {
     offerOut: new FormControl(false),
     listingAgreement: new FormControl(false),
     offerExecuted: new FormControl(false),
+    invoiceOut: new FormControl(false),
+    invoicePaid: new FormControl(false),
+    paid: new FormControl(false),
     closed: new FormControl(false),
     tenant: new FormControl(null),
     landlord: new FormControl(null),
@@ -64,13 +69,52 @@ export class CreateApplicationComponent implements OnInit {
   ngOnInit() {
     const user = this.authService.currentUserValue;
     this.userId = user.user.id;
+    this.userRole = user.user.role.name;
     this.user = user;
     this.appType = this.data.applicationType;
-    console.log(this.data.applicationType);
+    if (this.data.data) {
+      this.updating = true;
+      this.createApplicationForm.patchValue(this.data.data);
+    }
   }
 
   onNoClick(): void {
     this.dialogRef.close();
+  }
+
+  updateApplication() {
+    const appData = `mutation{
+      updateApplication(input: {where: {
+          id: "${this.data.data.id}"
+        },
+        data: {
+          address: "${this.createApplicationForm.value.address}",
+          price: ${this.createApplicationForm.value.price},
+          moneyIn: ${this.createApplicationForm.value.moneyIn},
+          approved: ${this.createApplicationForm.value.approved},
+          denied: ${this.createApplicationForm.value.denied},
+          offerOut: ${this.createApplicationForm.value.offerOut},
+          listingAgreement: ${this.createApplicationForm.value.listingAgreement},
+          offerExecuted: ${this.createApplicationForm.value.offerExecuted},
+          invoiceOut: ${this.createApplicationForm.value.invoiceOut},
+          invoicePaid: ${this.createApplicationForm.value.invoicePaid},
+          paid: ${this.createApplicationForm.value.paid},
+          closed: ${this.createApplicationForm.value.closed},
+          applicationType: ${this.appType},
+          agent: "${this.userId}"
+        }
+      }) {
+        application {
+          id
+        }
+      }
+    }`;
+
+    this.dataService.updateData(appData)
+    .subscribe(res => {
+      // this.sendEmailNotification();
+      this.dialogRef.close();
+    });
   }
 
   createApplication() {
@@ -107,13 +151,11 @@ export class CreateApplicationComponent implements OnInit {
     });
   }
 
-  // sendEmailNotification() {
-  //   ['deals@apartmentsourcechicago.com', `${this.user.user.email}`].forEach(el => {
-  //     this.dataService.sendNotification(this.createApplicationForm.value, this.user, el).subscribe(res => {
-  //       console.log(res);
-  //     });
-  //   });
-  // }
+  deleteApp() {
+    this.dataService.deleteApp(this.data.data.id).subscribe(res => {
+      this.dialogRef.close();
+    });
+  }
 
   onCommissionChange(e) {
     this.commissionType = e.value;

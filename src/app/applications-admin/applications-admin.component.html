@@ -183,7 +183,7 @@
               <ng-container matColumnDef="edit">
                 <th mat-header-cell *matHeaderCellDef> </th>
                 <td mat-cell *matCellDef="let row" style="width: 5%;">
-                  <button mat-icon-button *ngIf="!editing.includes(row.id)" (click)="edit(row.id)" ><mat-icon>edit</mat-icon></button>
+                  <button mat-icon-button *ngIf="!editing.includes(row.id)" (click)="edit(row)" ><mat-icon>edit</mat-icon></button>
                   <button mat-icon-button *ngIf="editing.includes(row.id)" (click)="save(row.id)"><mat-icon>save</mat-icon></button>
                   <!-- <button mat-icon-button *ngIf="editing.includes(row.id)" (click)="edit(row.id)"><mat-icon>delete</mat-icon></button> -->
                 </td>

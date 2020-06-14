@@ -1,3 +1,5 @@
+import { CreateApplicationComponent } from './../applications/create-application/create-application.component';
+import { MatDialog } from '@angular/material/dialog';
 import { SocketService } from './../services/socket.service';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { DataService } from './../data.service';
@@ -62,6 +64,7 @@ export class ApplicationsAdminComponent implements OnInit, OnDestroy {
   'edit'];
 
   constructor(
+    public dialog: MatDialog,
     private dataService: DataService,
     private socketService: SocketService,
   ) { }
@@ -218,10 +221,20 @@ export class ApplicationsAdminComponent implements OnInit, OnDestroy {
     });
   }
 
-  edit(appId) {
-    if (!this.editing.includes(appId)) {
-      this.editing.push(appId);
-    }
+  edit(app) {
+    console.log(app);
+    const dialogRef = this.dialog.open(CreateApplicationComponent, {
+      width: '550px',
+      data: {data: app, applicationType: this.applicationType}
+    });
+
+    dialogRef.afterClosed().subscribe(res => {
+      this.socketService.send('public', 'getApplications');
+      this.getApplications();
+    });
+    // if (!this.editing.includes(appId)) {
+    //   this.editing.push(appId);
+    // }
   }
 
   save(appId) {
@@ -231,29 +244,39 @@ export class ApplicationsAdminComponent implements OnInit, OnDestroy {
   }
 
   updateApp(app: Application, field) {
-    if (this.editing.includes(app.id)) {
-      this.loading = true;
-      app[field] = !app[field];
-      const appData = `mutation {
-          updateApplication(input: {
-            where: {
-              id: "${app.id}"
-            },
-            data: {
-              ${field}: ${app[field]}
-            }
-          }) {
-            application {
-              id
-            }
-          }
-        }`;
+    // if (this.editing.includes(app.id)) {
+    //   this.loading = true;
+    //   app[field] = !app[field];
+    //   const appData = `mutation {
+    //       updateApplication(input: {
+    //         where: {
+    //           id: "${app.id}"
+    //         },
+    //         data: {
+    //           ${field}: ${app[field]}
+    //         }
+    //       }) {
+    //         application {
+    //           id
+    //         }
+    //       }
+    //     }`;
 
-      this.dataService.updateData(appData).subscribe(() => {
-        this.getApplications();
-        this.socketService.send('public', 'getApplications');
-      });
-    }
+    //   this.dataService.updateData(appData).subscribe(() => {
+    //     this.getApplications();
+    //     this.socketService.send('public', 'getApplications');
+    //   });
+    // }
+    // this.applicationData = app;
+    const dialogRef = this.dialog.open(CreateApplicationComponent, {
+      width: '550px',
+      data: {data: app, applicationType: this.applicationType}
+    });
+
+    dialogRef.afterClosed().subscribe(res => {
+      this.socketService.send('public', 'getApplications');
+      this.getApplications();
+    });
   }
 
   paginator(e) {

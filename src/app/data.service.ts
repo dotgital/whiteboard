@@ -44,6 +44,12 @@ export class DataService {
     });
   }
 
+  deleteApp(id: string){
+    return this.http.delete(`https://backend.apartmentsource.com/applications/${id}`).pipe(map(res => {
+      return res;
+    }));
+  }
+
   createUser(user: Users) {
     return this.afStore.collection('users').doc(user.id).set(user);
   }
