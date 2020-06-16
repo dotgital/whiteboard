@@ -78,7 +78,7 @@
             <th mat-header-cell *matHeaderCellDef> Agent </th>
             <td mat-cell *matCellDef="let row" style="width: 15%;">
               <div fxLayout="row" fxLayoutAlign="start center">
-                  {{row.agent.fullName}}
+                  {{row.agent?.fullName || ''}}
               </div>
             </td>
           </ng-container>
