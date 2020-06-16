@@ -100,8 +100,7 @@ export class CreateApplicationComponent implements OnInit {
           invoicePaid: ${this.createApplicationForm.value.invoicePaid},
           paid: ${this.createApplicationForm.value.paid},
           closed: ${this.createApplicationForm.value.closed},
-          applicationType: ${this.appType},
-          agent: "${this.userId}"
+          applicationType: ${this.appType}
         }
       }) {
         application {
