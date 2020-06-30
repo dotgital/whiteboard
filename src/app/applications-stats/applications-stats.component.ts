@@ -1,3 +1,4 @@
+import { SocketService } from './../services/socket.service';
 import { DataService } from './../data.service';
 import { Component, OnInit } from '@angular/core';
 
@@ -12,14 +13,25 @@ export class ApplicationsStatsComponent implements OnInit {
   public loading = true;
 
   constructor(
-    private dataService: DataService
+    private dataService: DataService,
+    private socketService: SocketService
   ) { }
 
   ngOnInit() {
     this.getStats();
+    this.socketService.get().subscribe(method => {
+      console.log('Stats: ', method);
+      if (method === 'getApplications') {
+        this.getStats();
+      }
+      // if ( typeof this[method] === 'function' ) {
+      //   this[method]();
+      // }
+    });
   }
 
   getStats(){
+    this.stats = [];
     const date = new Date();
     const thisMonth = `${date.getFullYear()}-${('0' + (date.getMonth() + 1)).slice(-2)}-01`;
     // console.log(thisMonth);
