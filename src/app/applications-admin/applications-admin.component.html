@@ -190,10 +190,10 @@
               </ng-container>
     
           <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-          <tr mat-row *matRowDef="let row; columns: displayedColumns;">
-          </tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
         </table>
     
+        <div class="footer-total"><span class="label">Total price:</span> {{totalPrice | currency}}</div>
         <mat-paginator [length]="totalPages"
                   [pageSize]="10"
                   [pageSizeOptions]="[5, 10, 25, 100]"

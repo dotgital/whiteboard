@@ -21,6 +21,7 @@ export class ApplicationsAdminComponent implements OnInit, OnDestroy {
   public startPage = 0;
   public limitPage = 10;
   public totalPages: number;
+  public totalPrice: number;
   public searchUpdate = new Subject<string>();
   public editing: string[] = [];
   public agents = [];
@@ -210,6 +211,9 @@ export class ApplicationsAdminComponent implements OnInit, OnDestroy {
         applicationsConnection (where: ${where}) {
             aggregate {
                 count
+                sum{
+                  price
+                }
             }
         }
     }`;
@@ -217,6 +221,7 @@ export class ApplicationsAdminComponent implements OnInit, OnDestroy {
     this.dataService.getData(query).subscribe(({ data, loading })  => {
       this.dataSource = new MatTableDataSource<Application>(data.applications);
       this.totalPages = data.applicationsConnection.aggregate.count;
+      this.totalPrice = data.applicationsConnection.aggregate.sum.price;
       this.loading = false;
     });
   }

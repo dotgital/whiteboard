@@ -42,3 +42,15 @@
 .mat-calendar-arrow {
     display: none;
   }
+
+  .footer-total{    
+    background: #fff;
+    text-align: right;
+    padding: 10px 30px;
+    font-size: 14px;
+    color: #565656;
+    .label{
+      font-weight: 900;
+      margin-right: 5px;
+    }
+  }

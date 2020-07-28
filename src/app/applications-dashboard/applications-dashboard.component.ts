@@ -67,7 +67,7 @@ export class ApplicationsDashboardComponent implements OnInit, OnDestroy {
 
     const query = `
     query{
-        applications(sort: "createdAt:desc", where: ${where}) {
+        applications(sort: "createdAt:desc", where: ${where}, limit: -1) {
             id,
             applicationType,
             address,
@@ -90,10 +90,10 @@ export class ApplicationsDashboardComponent implements OnInit, OnDestroy {
                 }
             }
         }
-        users(where: { applications: {createdAt_gte: "${thisMonth}"} }){
+        users(where: { applications: {createdAt_gte: "${thisMonth}"} }, limit: -1){
           id
           fullName
-          applications (where: {createdAt_gte: "${thisMonth}"} ){
+          applications (where: {createdAt_gte: "${thisMonth}"}, limit: -1 ){
             id
             price
             approved
@@ -116,7 +116,7 @@ export class ApplicationsDashboardComponent implements OnInit, OnDestroy {
         stats.push({id, count, gross});
       });
 
-      console.log(stats);
+      // console.log(stats);
       const topAgentGross = stats.sort((a, b) => (a.gross > b.gross) ? -1 : 1);
       this.topAgentGross = topAgentGross['0'].id;
       const topAgent = stats.sort((a, b) => (a.count > b.count) ? -1 : 1);
