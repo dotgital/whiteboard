@@ -28,8 +28,8 @@
                         </div>
                         <div gdArea="content2">
                             <div class="statistics">
-                                <span> Gross: </span> <span class="float-right"> ${{item.value.price}} </span> <br />
-                                <span> Gross Sales: </span> <span class="float-right"> {{item.value.grossSales}} </span> <br />
+                                <span> Gross Rentals: </span> <span class="float-right"> {{item.value.price | currency}} </span> <br />
+                                <span> Gross Sales: </span> <span class="float-right"> {{item.value.grossSales | currency}} </span> <br />
                                 <!-- <span>Money In:  </span> <span class="float-right">{{item.value.moneyIn}}</span><br />
                                 <span>Incoice Paid:  </span> <span class="float-right">{{item.value.invoicePaid}}</span><br /> -->
                                 <!-- <span>Denied: {{item.denied}}</span><br> -->
@@ -62,8 +62,8 @@
                         <div>Approved: {{item.value.approved}}</div>
                         <!-- <div>Invoice Out: {{item.value.invoiceOut}}</div>
                         <div>Incoice Paid: {{item.value.invoicePaid}}</div> -->
-                        <div>Gross: ${{item.value.price}} </div>
-                        <div>Gross Sales: {{item.value.grossSales}}</div>
+                        <div>Gross Rentals: {{item.value.price | currency}} </div>
+                        <div>Gross Sales: {{item.value.grossSales | currency}}</div>
                     </div>
                 </div>
             </div>
@@ -87,8 +87,8 @@
                         <div>Approved: {{item.value.approved}}</div>
                         <!-- <div>Invoice Out: {{item.value.invoiceOut}}</div>
                         <div>Incoice Paid: {{item.value.invoicePaid}}</div> -->
-                        <div>Gross: ${{item.value.price}} </div>
-                        <div>Gross Sales: {{item.value.grossSales}}</div>
+                        <div>Gross Rentals: {{item.value.price | currency}} </div>
+                        <div>Gross Sales: {{item.value.grossSales | currency}}</div>
                     </div>
                 </div>
             </div>

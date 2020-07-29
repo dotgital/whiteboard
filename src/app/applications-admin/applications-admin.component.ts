@@ -167,6 +167,9 @@ export class ApplicationsAdminComponent implements OnInit, OnDestroy {
     // console.log(createdEndtAt);
 
     let where;
+    let totalPrice;
+    const totalApproved: boolean = true;
+
     if (this.agentSelected) {
       where = `{
         agent: "${this.agentSelected}",
@@ -175,12 +178,27 @@ export class ApplicationsAdminComponent implements OnInit, OnDestroy {
         createdAt_gt: "${createdStartAt}"
         createdAt_lt: "${createdEndtAt}"
       }`;
+      totalPrice = `{
+        agent: "${this.agentSelected}",
+        address_contains: "${this.search}",
+        applicationType: "${this.applicationType}"
+        createdAt_gt: "${createdStartAt}"
+        createdAt_lt: "${createdEndtAt}"
+        approved: true
+      }`;
     } else {
       where = `{
         address_contains: "${this.search}",
         applicationType: "${this.applicationType}"
         createdAt_gt: "${createdStartAt}"
         createdAt_lt: "${createdEndtAt}"
+      }`;
+      totalPrice = `{
+        address_contains: "${this.search}",
+        applicationType: "${this.applicationType}"
+        createdAt_gt: "${createdStartAt}"
+        createdAt_lt: "${createdEndtAt}"
+        approved: true
       }`;
     }
 
@@ -211,17 +229,21 @@ export class ApplicationsAdminComponent implements OnInit, OnDestroy {
         applicationsConnection (where: ${where}) {
             aggregate {
                 count
-                sum{
-                  price
-                }
             }
         }
+        totalPrice: applicationsConnection (where: ${totalPrice}) {
+          aggregate {
+              sum{
+                price
+              }
+          }
+      }
     }`;
-
     this.dataService.getData(query).subscribe(({ data, loading })  => {
+      console.log(data);
       this.dataSource = new MatTableDataSource<Application>(data.applications);
       this.totalPages = data.applicationsConnection.aggregate.count;
-      this.totalPrice = data.applicationsConnection.aggregate.sum.price;
+      this.totalPrice = data.totalPrice.aggregate.sum.price;
       this.loading = false;
     });
   }

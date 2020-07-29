@@ -10,7 +10,7 @@
           <a mat-list-item routerLink="/dashboard/applications-dashboard" (click)="drawer.close()">Whiteboard</a>
           <!-- <a mat-list-item routerLink="/dashboard/whiteboard" (click)="drawer.close()">Agent Stats (old)</a> -->
           <a mat-list-item routerLink="/dashboard/applications-stats" (click)="drawer.close()">Agent Stats</a>
-          <a mat-list-item routerLink="/dashboard/applications" (click)="drawer.close()">Applications</a>
+          <a mat-list-item routerLink="/dashboard/applications" (click)="drawer.close()">My Deals</a>
           <!-- <a mat-list-item routerLink="/dashboard/manage-applications" (click)="drawer.close()">Applications <span class="sub-menu">(admin)</span></a>
           <a mat-list-item routerLink="/dashboard/users" (click)="drawer.close()">Users</a> -->
           <!-- <a mat-list-item routerLink="/dashboard/manage-applications" (click)="drawer.close()" *ngIf="user.user.role.name == 'Administrator'">Applications old <span class="sub-menu">(admin)</span></a> -->
@@ -29,8 +29,10 @@
         <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
       </button>
       <span>
-        <!-- Dashboard -->
+        <img src="https://apartmentsource.com/img/logonew.png" alt="" style="width: 55px; margin: 15px 10px 0px 10px;">
+        <!-- Dashboard --> 
       </span>
+      <span>{{title}}</span>
       <span class="spacer"></span>
       <button mat-icon-button (click)="logout()" ><mat-icon>exit_to_app</mat-icon></button>
     </mat-toolbar>
