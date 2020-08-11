@@ -54,14 +54,28 @@ export class ApplicationsStatsComponent implements OnInit {
                 paid
             }
         }
+
+        userSales: users(where: {blocked: false, applications: {closed: true}}){
+          id
+          fullName
+          avatar{
+            url
+          }
+          applications(where:  {closed: true, paid_ne: true} ){
+              price
+              closed
+              paid
+          }
+       }
     }`;
 
     this.dataService.getData(query).subscribe(res => {
       if (res.data.users.length > 0) {
         const statsData: any[] = res.data.users;
-        // console.log(statsData);
+        const statsSales: any[] = res.data.userSales;
         statsData.forEach(element => {
-          const stats = {
+          let stats;
+          stats = {
             id: element.id,
             name: element.fullName,
             avatar: element.avatar.length > 0 ? element.avatar['0'].url : '',
@@ -70,11 +84,87 @@ export class ApplicationsStatsComponent implements OnInit {
             approved: element.applications.reduce((total, apps) => (apps.approved === true ? total + 1 : total), 0),
             invoiceOut: element.applications.reduce((total, apps) => (apps.invoiceOut === true ? total + 1 : total), 0),
             invoicePaid: element.applications.reduce((total, apps) => (apps.invoicePaid === true ? total + 1 : total), 0),
-            grossSales: element.applications.reduce((total, apps) => (apps.price && apps.closed === true ? total + apps.price : total), 0),
+            grossSales: 0,
             price: element.applications.reduce((total, apps) => (apps.price && apps.approved === true ? total + apps.price : total), 0),
           };
+          // statsSales.forEach(el => {
+          //   console.log(el);
+          //   if (element.id === el.id) {
+          //     stats = {
+          //       id: el.id,
+          //       name: el.fullName,
+          //       avatar: el.avatar.length > 0 ? el.avatar['0'].url : '',
+          //       grossSales: el.applications.reduce((total, apps) => (apps.price ? total + apps.price : total), 0),
+          //       applications: 0,
+          //       moneyIn: 0,
+          //       approved: 0,
+          //       invoiceOut: 0,
+          //       invoicePaid: 0,
+          //       price: 0,
+          //     };
+          //   } else {
+          //     stats = {
+          //       id: element.id,
+          //       name: element.fullName,
+          //       avatar: element.avatar.length > 0 ? element.avatar['0'].url : '',
+          //       applications: element.applications.length,
+          //       moneyIn: element.applications.reduce((total, apps) => (apps.moneyIn === true ? total + 1 : total), 0),
+          //       approved: element.applications.reduce((total, apps) => (apps.approved === true ? total + 1 : total), 0),
+          //       invoiceOut: element.applications.reduce((total, apps) => (apps.invoiceOut === true ? total + 1 : total), 0),
+          //       invoicePaid: element.applications.reduce((total, apps) => (apps.invoicePaid === true ? total + 1 : total), 0),
+          //       grossSales: el.applications.reduce((total, apps) => (apps.price ? total + apps.price : total), 0),
+          //       price: element.applications.reduce((total, apps) => (apps.price && apps.approved === true ? total + apps.price : total), 0),
+          //     };
+          //   }
+
           this.stats.push(stats);
         });
+
+        statsSales.forEach(user => {
+          if ( this.stats.some(el => el.id === user.id) ) {
+            this.stats = this.stats.map(el => {
+              if (el.id === user.id) {
+                el.grossSales = user.applications.reduce((total, apps) => (apps.price ? total + apps.price : total), 0);
+              }
+              return el;
+            });
+          } else {
+            const newStats = {
+              id: user.id,
+              name: user.fullName,
+              avatar: user.avatar.length > 0 ? user.avatar['0'].url : '',
+              grossSales: user.applications.reduce((total, apps) => (apps.price ? total + apps.price : total), 0),
+              applications: 0,
+              moneyIn: 0,
+              approved: 0,
+              invoiceOut: 0,
+              invoicePaid: 0,
+              price: 0,
+            };
+            this.stats.push(newStats);
+          }
+          // this.stats = this.stats.map(el => {
+          //   console.log(`El Id: ${el.id}, new ID: ${user.id}`);
+          //   if (el.id === user.id) {
+          //     el.grossSales = user.applications.reduce((total, apps) => (apps.price ? total + apps.price : total), 0);
+          //     return el;
+          //   } else {
+          //     return {
+          //       id: user.id,
+          //       name: user.fullName,
+          //       avatar: user.avatar.length > 0 ? user.avatar['0'].url : '',
+          //       grossSales: user.applications.reduce((total, apps) => (apps.price ? total + apps.price : total), 0),
+          //       applications: 0,
+          //       moneyIn: 0,
+          //       approved: 0,
+          //       invoiceOut: 0,
+          //       invoicePaid: 0,
+          //       price: 0,
+          //     };
+          //   }
+          // });
+        });
+
         this.stats.sort(this.sortPlaces);
         this.loading = false;
         // console.log(this.stats);

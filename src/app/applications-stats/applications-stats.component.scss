@@ -46,11 +46,12 @@
 }
 
 .content-table div{
-    width: 19%;
+    width: 18%;
     float: left;
-    text-align: center;
-    border-left: 1px solid #d4d4d4;
+    text-align: left;
+    /* border-left: 1px solid #d4d4d4; */
     margin-top: 7px;
+    padding-left: 10px;
 }
 
 .avatar_sm {
