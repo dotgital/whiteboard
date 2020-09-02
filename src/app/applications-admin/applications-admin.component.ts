@@ -175,29 +175,29 @@ export class ApplicationsAdminComponent implements OnInit, OnDestroy {
         agent: "${this.agentSelected}",
         address_contains: "${this.search}",
         applicationType: "${this.applicationType}"
-        createdAt_gt: "${createdStartAt}"
-        createdAt_lt: "${createdEndtAt}"
+        createdAt_gte: "${createdStartAt}"
+        createdAt_lte: "${createdEndtAt} 23:59:59"
       }`;
       totalPrice = `{
         agent: "${this.agentSelected}",
         address_contains: "${this.search}",
         applicationType: "${this.applicationType}"
-        createdAt_gt: "${createdStartAt}"
-        createdAt_lt: "${createdEndtAt}"
+        createdAt_gte: "${createdStartAt}"
+        createdAt_lte: "${createdEndtAt} 23:59:59"
         approved: true
       }`;
     } else {
       where = `{
         address_contains: "${this.search}",
         applicationType: "${this.applicationType}"
-        createdAt_gt: "${createdStartAt}"
-        createdAt_lt: "${createdEndtAt}"
+        createdAt_gte: "${createdStartAt}"
+        createdAt_lte: "${createdEndtAt} 23:59:59"
       }`;
       totalPrice = `{
         address_contains: "${this.search}",
         applicationType: "${this.applicationType}"
-        createdAt_gt: "${createdStartAt}"
-        createdAt_lt: "${createdEndtAt}"
+        createdAt_gte: "${createdStartAt}"
+        createdAt_lte: "${createdEndtAt} 23:59:59"
         approved: true
       }`;
     }
@@ -239,8 +239,9 @@ export class ApplicationsAdminComponent implements OnInit, OnDestroy {
           }
       }
     }`;
+    // console.log(query);
     this.dataService.getData(query).subscribe(({ data, loading })  => {
-      console.log(data);
+      // console.log(data);
       this.dataSource = new MatTableDataSource<Application>(data.applications);
       this.totalPages = data.applicationsConnection.aggregate.count;
       this.totalPrice = data.totalPrice.aggregate.sum.price;
@@ -249,7 +250,7 @@ export class ApplicationsAdminComponent implements OnInit, OnDestroy {
   }
 
   edit(app) {
-    console.log(app);
+    // console.log(app);
     const dialogRef = this.dialog.open(CreateApplicationComponent, {
       width: '550px',
       data: {data: app, applicationType: this.applicationType}
