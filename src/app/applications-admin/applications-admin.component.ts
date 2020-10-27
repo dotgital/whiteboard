@@ -27,6 +27,17 @@ export class ApplicationsAdminComponent implements OnInit, OnDestroy {
   public agents = [];
   public agentSelected: string;
 
+  public moneyIn: boolean;
+  public approved: boolean;
+  public denied: boolean;
+  public invoiceOut: boolean;
+  public invoicePaid: boolean;
+  public paid: boolean;
+  public closed: boolean;
+  public offerExecuted: boolean;
+  public listingAgreement: boolean;
+  public offerOut: boolean;
+
   public years = [
     {display: '2019', value: '2019'},
     {display: '2020', value: '2020'},
@@ -159,12 +170,8 @@ export class ApplicationsAdminComponent implements OnInit, OnDestroy {
     const endMonth = this.selectedMonth !== undefined ? this.selectedMonth : '12';
     const endYear = this.selectedYear !== undefined ? this.selectedYear : '2500';
 
-    // const createdStartAt = `${startYear}-${startMonth}-01`;
-    // const createdEndtAt = `${endYear}-${endMonth}-01`;
     const createdStartAt = new Date(parseInt(startYear), parseInt(startMonth) - 1 , 1).toISOString().substr(0, 10);
     const createdEndtAt = new Date(parseInt(endYear), parseInt(endMonth), 0).toISOString().substr(0, 10);
-    // console.log(createdStartAt);
-    // console.log(createdEndtAt);
 
     let where;
     let totalPrice;
@@ -177,6 +184,16 @@ export class ApplicationsAdminComponent implements OnInit, OnDestroy {
         applicationType: "${this.applicationType}"
         createdAt_gte: "${createdStartAt}"
         createdAt_lte: "${createdEndtAt} 23:59:59"
+        moneyIn: ${this.moneyIn ? this.moneyIn : null}
+        approved: ${this.approved ? this.approved : null}
+        denied: ${this.denied ? this.denied : null}
+        invoiceOut: ${this.invoiceOut ? this.invoiceOut : null}
+        invoicePaid: ${this.invoicePaid ? this.invoicePaid : null}
+        paid: ${this.paid ? this.paid : null}
+        closed: ${this.closed ? this.closed : null}
+        offerExecuted: ${this.offerExecuted ? this.offerExecuted : null}
+        listingAgreement: ${this.listingAgreement ? this.listingAgreement : null}
+        offerOut: ${this.offerOut ? this.offerOut : null}
       }`;
       totalPrice = `{
         agent: "${this.agentSelected}",
@@ -185,6 +202,15 @@ export class ApplicationsAdminComponent implements OnInit, OnDestroy {
         createdAt_gte: "${createdStartAt}"
         createdAt_lte: "${createdEndtAt} 23:59:59"
         approved: true
+        moneyIn: ${this.moneyIn ? this.moneyIn : null}
+        denied: ${this.denied ? this.denied : null}
+        invoiceOut: ${this.invoiceOut ? this.invoiceOut : null}
+        invoicePaid: ${this.invoicePaid ? this.invoicePaid : null}
+        paid: ${this.paid ? this.paid : null}
+        closed: ${this.closed ? this.closed : null}
+        offerExecuted: ${this.offerExecuted ? this.offerExecuted : null}
+        listingAgreement: ${this.listingAgreement ? this.listingAgreement : null}
+        offerOut: ${this.offerOut ? this.offerOut : null}
       }`;
     } else {
       where = `{
@@ -192,6 +218,16 @@ export class ApplicationsAdminComponent implements OnInit, OnDestroy {
         applicationType: "${this.applicationType}"
         createdAt_gte: "${createdStartAt}"
         createdAt_lte: "${createdEndtAt} 23:59:59"
+        moneyIn: ${this.moneyIn ? this.moneyIn : null}
+        approved: ${this.approved ? this.approved : null}
+        denied: ${this.denied ? this.denied : null}
+        invoiceOut: ${this.invoiceOut ? this.invoiceOut : null}
+        invoicePaid: ${this.invoicePaid ? this.invoicePaid : null}
+        paid: ${this.paid ? this.paid : null}
+        closed: ${this.closed ? this.closed : null}
+        offerExecuted: ${this.offerExecuted ? this.offerExecuted : null}
+        listingAgreement: ${this.listingAgreement ? this.listingAgreement : null}
+        offerOut: ${this.offerOut ? this.offerOut : null}
       }`;
       totalPrice = `{
         address_contains: "${this.search}",
@@ -199,6 +235,15 @@ export class ApplicationsAdminComponent implements OnInit, OnDestroy {
         createdAt_gte: "${createdStartAt}"
         createdAt_lte: "${createdEndtAt} 23:59:59"
         approved: true
+        moneyIn: ${this.moneyIn ? this.moneyIn : null}
+        denied: ${this.denied ? this.denied : null}
+        invoiceOut: ${this.invoiceOut ? this.invoiceOut : null}
+        invoicePaid: ${this.invoicePaid ? this.invoicePaid : null}
+        paid: ${this.paid ? this.paid : null}
+        closed: ${this.closed ? this.closed : null}
+        offerExecuted: ${this.offerExecuted ? this.offerExecuted : null}
+        listingAgreement: ${this.listingAgreement ? this.listingAgreement : null}
+        offerOut: ${this.offerOut ? this.offerOut : null}
       }`;
     }
 

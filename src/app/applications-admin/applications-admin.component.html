@@ -111,70 +111,70 @@
             </ng-container>
     
             <ng-container matColumnDef="offerOut">
-              <th mat-header-cell *matHeaderCellDef>Offer Out </th>
+              <th mat-header-cell *matHeaderCellDef><mat-checkbox [(ngModel)]="offerOut" (change)="getApplications()">Offer Out</mat-checkbox></th>
               <td mat-cell *matCellDef="let row" style="width: 8%;">
                   <mat-checkbox [(ngModel)]="row.offerOut" color="primary" [disabled]="!editing.includes(row.id)" (click)="updateApp(row, 'offerOut')"></mat-checkbox>
               </td>
             </ng-container>
     
             <ng-container matColumnDef="listingAgreement">
-              <th mat-header-cell *matHeaderCellDef>Listing <br> Agreement </th>
+              <th mat-header-cell *matHeaderCellDef><mat-checkbox [(ngModel)]="listingAgreement" (change)="getApplications()">Listing<br/>Agreement</mat-checkbox></th>
               <td mat-cell *matCellDef="let row" style="width: 8%;">
                 <mat-checkbox [(ngModel)]="row.listingAgreement" color="primary" [disabled]="!editing.includes(row.id)" (click)="updateApp(row, 'listingAgreement')"></mat-checkbox>
               </td>
             </ng-container>
     
             <ng-container matColumnDef="offerExecuted">
-              <th mat-header-cell *matHeaderCellDef>Offer <br> Executed </th>
+              <th mat-header-cell *matHeaderCellDef><mat-checkbox [(ngModel)]="offerExecuted" (change)="getApplications()">Offer <br> Executed</mat-checkbox></th>
               <td mat-cell *matCellDef="let row" style="width: 8%;">
                   <mat-checkbox [(ngModel)]="row.offerExecuted" color="primary" [disabled]="!editing.includes(row.id)" (click)="updateApp(row, 'offerExecuted')"></mat-checkbox>
               </td>
             </ng-container>
     
             <ng-container matColumnDef="closed">
-              <th mat-header-cell *matHeaderCellDef>Closed </th>
+              <th mat-header-cell *matHeaderCellDef><mat-checkbox [(ngModel)]="closed" (change)="getApplications()">Closed</mat-checkbox></th>
               <td mat-cell *matCellDef="let row" style="width: 8%;">
                 <mat-checkbox [(ngModel)]="row.closed" color="primary" [disabled]="!editing.includes(row.id)" (click)="updateApp(row, 'closed')"></mat-checkbox>
               </td>
             </ng-container>
     
           <ng-container matColumnDef="moneyIn">
-            <th mat-header-cell *matHeaderCellDef>Money In </th>
+            <th mat-header-cell *matHeaderCellDef><mat-checkbox [(ngModel)]="moneyIn" (change)="getApplications()">Money In</mat-checkbox> </th>
             <td mat-cell *matCellDef="let row" style="width: 8%;">
                 <mat-checkbox [(ngModel)]="row.moneyIn" color="primary" [disabled]="!editing.includes(row.id)" (click)="updateApp(row, 'moneyIn')"></mat-checkbox>
             </td>
           </ng-container>
     
           <ng-container matColumnDef="approved">
-            <th mat-header-cell *matHeaderCellDef>Approved </th>
+            <th mat-header-cell *matHeaderCellDef><mat-checkbox [(ngModel)]="approved" (change)="getApplications()">Approved</mat-checkbox> </th>
             <td mat-cell *matCellDef="let row" style="width: 8%;">
               <mat-checkbox [(ngModel)]="row.approved" color="primary" [disabled]="!editing.includes(row.id)" (click)="updateApp(row, 'approved')"></mat-checkbox>
             </td>
           </ng-container>
     
             <ng-container matColumnDef="denied">
-                <th mat-header-cell *matHeaderCellDef>Denied </th>
+                <th mat-header-cell *matHeaderCellDef><mat-checkbox [(ngModel)]="denied" (change)="getApplications()">Denied</mat-checkbox></th>
                 <td mat-cell *matCellDef="let row" style="width: 8%;">
                   <mat-checkbox [(ngModel)]="row.denied" color="primary" [disabled]="!editing.includes(row.id)" (click)="updateApp(row, 'denied')"></mat-checkbox>
                 </td>
               </ng-container>
 
               <ng-container matColumnDef="invoiceOut">
-                <th mat-header-cell *matHeaderCellDef>Invoice Out </th>
+                <th mat-header-cell *matHeaderCellDef><mat-checkbox [(ngModel)]="invoiceOut" (change)="getApplications()">Invoice Out</mat-checkbox></th>
                 <td mat-cell *matCellDef="let row" style="width: 8%;">
                   <mat-checkbox [(ngModel)]="row.invoiceOut" color="primary" [disabled]="!editing.includes(row.id)" (click)="updateApp(row, 'invoiceOut')"></mat-checkbox>
                 </td>
               </ng-container>
 
               <ng-container matColumnDef="invoicePaid">
-                <th mat-header-cell *matHeaderCellDef>Invoice Paid </th>
+                <th mat-header-cell *matHeaderCellDef><mat-checkbox [(ngModel)]="invoicePaid" (change)="getApplications()">Invoice Paid</mat-checkbox></th>
                 <td mat-cell *matCellDef="let row" style="width: 8%;">
                   <mat-checkbox [(ngModel)]="row.invoicePaid" color="primary" [disabled]="!editing.includes(row.id)" (click)="updateApp(row, 'invoicePaid')"></mat-checkbox>
                 </td>
               </ng-container>
 
               <ng-container matColumnDef="paid">
-                <th mat-header-cell *matHeaderCellDef>Paid </th>
+                <th mat-header-cell *matHeaderCellDef><mat-checkbox [(ngModel)]="paid" (change)="getApplications()">Paid</mat-checkbox></th>
                 <td mat-cell *matCellDef="let row" style="width: 8%;">
                   <mat-checkbox [(ngModel)]="row.paid" color="primary" [disabled]="!editing.includes(row.id)" (click)="updateApp(row, 'paid')"></mat-checkbox>
                 </td>
