@@ -3,13 +3,113 @@
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
+h4{
+  color: #f0f0f0 !important;
+}
+
 .mat-toolbar.mat-primary.mat-toolbar-single-row{
   z-index: 100 !important;
+  background-color: #242424 !important;
+  border: 1px solid #000 !important;
+}
+
+.mat-drawer{
+  background-color: #242424 !important;
+}
+
+.mat-list-base .mat-list-item{
+  color: #ffffff !important;
+}
+
+.mat-toolbar{
+  background-color: #242424 !important;
+  border: 1px solid #000 !important;
+  color: #ffffff !important;
+}
+
+.mat-card{
+  background-color: #242424 !important;
+  color: #ffffff !important;
 }
 
 .loading-top.mat-progress-bar{
   position: absolute;
 }
+
+.mat-form-field-appearance-outline .mat-form-field-outline{
+  color: #565656 !important;
+  background-color: #333333;
+  border-radius: 5px;
+}
+
+.mat-form-field-label{
+  color: #919191 !important;
+}
+
+.mat-slide-toggle.mat-checked .mat-slide-toggle-thumb{
+  background: #fff !important;
+}
+
+.mat-table{
+  background: #242424 !important;
+}
+
+th.mat-header-cell, td.mat-cell, td.mat-footer-cell, th{
+  border-bottom-color: #373737 !important;
+}
+
+.mat-button-toggle-appearance-standard {
+  background: #333333 !important;
+}
+
+.mat-slide-toggle.mat-checked .mat-slide-toggle-bar,
+.mat-flat-button.mat-primary:not([disabled]),
+.mat-button-toggle-checked{
+  background: linear-gradient(60deg, #288c62, #50a280) !important;
+}
+
+.mat-paginator{
+  background-color: #242424 !important;
+}
+
+th.mat-header-cell, 
+td.mat-cell, 
+td.mat-footer-cell, 
+th,
+.mat-button-toggle-appearance-standard,
+.mat-hint,
+.mat-card-subtitle,
+.mat-stroked-button.mat-primary,
+.mat-dialog-container,
+.mat-select-value,
+.mat-paginator *{
+  color: #fff !important;
+}
+
+.mat-dialog-container{
+  background-color: #232323 !important;
+}
+
+.mat-flat-button.mat-primary[disabled]{
+  background-color: #8b8b8b1f !important;
+  color: #565656 !important;
+}
+
+.mat-checkbox-frame{
+  border-color: #777777 !important
+}
+
+
+/* Change the white to any color */
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus, 
+input:-webkit-autofill:active
+{
+ -webkit-box-shadow: 0 0 0 30px #333333 inset !important;
+ -webkit-text-fill-color: #fff4a5 !important;
+}
+
 /* You can add global styles to this file, and also import other style files */
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
 @import "../src/custom-theme.scss";
@@ -141,7 +241,7 @@ input{
   width: 50px;
   height: 50px;
   border-radius: 50%;
-  border: 1px solid #eaeaea;
+  border: 1px solid #a4a4a4;
 }
 
 .avatar_md{

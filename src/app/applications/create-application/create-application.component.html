@@ -43,26 +43,26 @@
   <div fxLayout="row">
     <div fxLayout="column" fxLayoutAlign="start start" fxFlex="48">
       <div *ngIf="appType == 'Leasing'">
-        <mat-checkbox color="primary" formControlName="moneyIn">Money In</mat-checkbox><br>
-        <mat-checkbox color="primary" formControlName="approved">Approved</mat-checkbox><br>
-        <mat-checkbox color="primary" formControlName="denied">Denied</mat-checkbox>
+        <mat-checkbox color="light" formControlName="moneyIn">Money In</mat-checkbox><br>
+        <mat-checkbox color="light" formControlName="approved">Approved</mat-checkbox><br>
+        <mat-checkbox color="light" formControlName="denied">Denied</mat-checkbox>
       </div>
       <div *ngIf="appType == 'Listing'">
-        <mat-checkbox color="primary" formControlName="listingAgreement">Listing Agreement</mat-checkbox><br>
-        <mat-checkbox color="primary" formControlName="offerExecuted">Offer Executed</mat-checkbox><br>
-        <mat-checkbox color="primary" formControlName="closed">Closed</mat-checkbox>
+        <mat-checkbox color="light" formControlName="listingAgreement">Listing Agreement</mat-checkbox><br>
+        <mat-checkbox color="light" formControlName="offerExecuted">Offer Executed</mat-checkbox><br>
+        <mat-checkbox color="light" formControlName="closed">Closed</mat-checkbox>
       </div>
       <div *ngIf="appType == 'Buying'">
-        <mat-checkbox color="primary" formControlName="offerOut">Offer out</mat-checkbox><br>
-        <mat-checkbox color="primary" formControlName="offerExecuted">Offer Executed</mat-checkbox><br>
-        <mat-checkbox color="primary" formControlName="closed">Closed</mat-checkbox>
+        <mat-checkbox color="light" formControlName="offerOut">Offer out</mat-checkbox><br>
+        <mat-checkbox color="light" formControlName="offerExecuted">Offer Executed</mat-checkbox><br>
+        <mat-checkbox color="light" formControlName="closed">Closed</mat-checkbox>
       </div>
     </div>
     <div fxLayout="column" fxLayoutAlign="start start" fxFlex="48">
       <div *ngIf="updating && userRole === 'Administrator'">
-        <mat-checkbox color="primary" formControlName="invoiceOut">Invoice Out</mat-checkbox><br>
-        <mat-checkbox color="primary" formControlName="invoicePaid">Invoice Paid</mat-checkbox><br>
-        <mat-checkbox color="primary" formControlName="paid">Paid</mat-checkbox><br>
+        <mat-checkbox color="light" formControlName="invoiceOut">Invoice Out</mat-checkbox><br>
+        <mat-checkbox color="light" formControlName="invoicePaid">Invoice Paid</mat-checkbox><br>
+        <mat-checkbox color="light" formControlName="paid">Paid</mat-checkbox><br>
       </div>
     </div>
   </div>

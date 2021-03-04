@@ -46,7 +46,7 @@
         <ng-container  *ngFor="let item of stats | keyvalue">
             <div fxLayout="row" fxLayoutAlign="space-evenly stretch" style="margin-bottom: 5px;" *ngIf="item.key > 2 && item.key < 10">
                 <div gdAreas="number avatar content" gdGap="5px" gdRows="auto" gdColumns="35px 35px auto"
-                class="mat-elevation-z4" fxFill style="background: #fff; padding: 5px">
+                class="mat-elevation-z4" fxFill style="background: #242424; color: #fff; padding: 5px">
                     <div gdArea="number" class="number">
                         {{place(item.key)}}
                     </div>
@@ -71,7 +71,7 @@
         <ng-container  *ngFor="let item of stats | keyvalue">
             <div fxLayout="row" fxLayoutAlign="space-evenly stretch" style="margin-bottom: 5px;" *ngIf="item.key > 9">
                 <div gdAreas="number avatar content" gdGap="5px" gdRows="auto" gdColumns="35px 35px auto"
-                class="mat-elevation-z4" fxFill style="background: #fff; padding: 5px">
+                class="mat-elevation-z4" fxFill style="background: #242424; color: #fff; padding: 5px">
                     <div gdArea="number" class="number">
                         {{place(item.key)}}
                     </div>
