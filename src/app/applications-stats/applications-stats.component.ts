@@ -11,6 +11,7 @@ export class ApplicationsStatsComponent implements OnInit {
 
   public stats: any[] = [];
   public loading = true;
+  public sortedByGross = true; 
 
   constructor(
     private dataService: DataService,
@@ -165,6 +166,7 @@ export class ApplicationsStatsComponent implements OnInit {
           // });
         });
 
+        this.stats.sort(this.sortPlacesGross);
         this.stats.sort(this.sortPlaces);
         this.loading = false;
         // console.log(this.stats);
@@ -172,12 +174,46 @@ export class ApplicationsStatsComponent implements OnInit {
     });
   }
 
+  sortPlacesGross(a, b) {
+    if ((parseInt(b.price) + parseInt(b.grossSales)) < (parseInt(a.price) + parseInt(a.grossSales))){
+      return -1;
+    }
+    if ((parseInt(b.price) + parseInt(b.grossSales)) > (parseInt(a.price) + parseInt(a.grossSales))){
+      return 1;
+    }
+    return 0;
+    // return parseInt(b.approved) - parseInt(a.approved)
+  }
+
   sortPlaces(a, b) {
-    return parseInt(b.approved) - parseInt(a.approved)
+    if ( parseInt(b.approved) < parseInt(a.approved) ){
+      return -1;
+    }
+    if ( parseInt(b.approved) > parseInt(a.approved) ){
+      return 1;
+    }
+    return 0;
+    // return parseInt(b.approved) - parseInt(a.approved)
   }
 
   place(place){
     // console.log(place);
     return parseInt(place) + 1;
+  }
+
+  sortBy(type){
+    if(type == 'gross'){
+      this.loading = true;
+      this.stats.sort(this.sortPlaces);
+      this.stats.sort(this.sortPlacesGross);
+      this.loading = false;
+    } else {
+      this.loading = true;
+      this.stats.sort(this.sortPlacesGross);
+      this.stats.sort(this.sortPlaces);
+      this.loading = false;
+    }
+    this.sortedByGross = !this.sortedByGross;
+    console.log(type);
   }
 }

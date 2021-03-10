@@ -95,3 +95,5 @@
         </ng-container>
     </div>
 </div>
+<button class="sort-btn" *ngIf="!sortedByGross" (click)="sortBy('apps')"><span>Order By </span> <mat-icon>maps_home_work</mat-icon></button>
+<button class="sort-btn" *ngIf="sortedByGross" (click)="sortBy('gross')"><span>Order By </span>  <mat-icon>attach_money</mat-icon></button>

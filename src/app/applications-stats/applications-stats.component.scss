@@ -61,3 +61,19 @@
     margin-top: 0px;
     margin-bottom: -3px;
 }
+
+.sort-btn{
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    border-radius: 50px;
+    display: inline-flex;
+    background: linear-gradient(60deg, #288c6c, #4ea752);
+    color: #fff;
+    border: none;
+    padding: 5px 10px;
+}
+
+.sort-btn span{
+    padding: 4px 2px;
+}
