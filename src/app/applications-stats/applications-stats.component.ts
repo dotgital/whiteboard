@@ -82,7 +82,8 @@ export class ApplicationsStatsComponent implements OnInit {
             avatar: element.avatar.length > 0 ? element.avatar['0'].url : '',
             applications: element.applications.length,
             moneyIn: element.applications.reduce((total, apps) => (apps.moneyIn === true ? total + 1 : total), 0),
-            approved: element.applications.reduce((total, apps) => (apps.approved === true ? total + 1 : total), 0),
+            approvedSub: element.applications.reduce((total, apps) => (apps.approved === true ? total + 1 : total), 0),
+            closed: element.applications.reduce((total, apps) => (apps.closed === true ? total + 1 : total), 0),
             invoiceOut: element.applications.reduce((total, apps) => (apps.invoiceOut === true ? total + 1 : total), 0),
             invoicePaid: element.applications.reduce((total, apps) => (apps.invoicePaid === true ? total + 1 : total), 0),
             grossSales: 0,
@@ -118,8 +119,11 @@ export class ApplicationsStatsComponent implements OnInit {
           //     };
           //   }
 
+          stats.approved = stats.approvedSub + stats.closed;
           this.stats.push(stats);
         });
+
+        console.log(this.stats);
 
         statsSales.forEach(user => {
           if ( this.stats.some(el => el.id === user.id) ) {
