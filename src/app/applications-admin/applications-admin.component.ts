@@ -42,6 +42,8 @@ export class ApplicationsAdminComponent implements OnInit, OnDestroy {
     {display: '2019', value: '2019'},
     {display: '2020', value: '2020'},
     {display: '2021', value: '2021'},
+    {display: '2022', value: '2022'},
+    {display: '2023', value: '2023'},
   ];
   public months = [
     {display: '01', value: '01'},
@@ -201,7 +203,7 @@ export class ApplicationsAdminComponent implements OnInit, OnDestroy {
         applicationType: "${this.applicationType}"
         createdAt_gte: "${createdStartAt}"
         createdAt_lte: "${createdEndtAt} 23:59:59"
-        approved: true
+        approved: ${this.approved ? this.approved : null}
         moneyIn: ${this.moneyIn ? this.moneyIn : null}
         denied: ${this.denied ? this.denied : null}
         invoiceOut: ${this.invoiceOut ? this.invoiceOut : null}
@@ -234,7 +236,7 @@ export class ApplicationsAdminComponent implements OnInit, OnDestroy {
         applicationType: "${this.applicationType}"
         createdAt_gte: "${createdStartAt}"
         createdAt_lte: "${createdEndtAt} 23:59:59"
-        approved: true
+        approved: ${this.approved ? this.approved : null}
         moneyIn: ${this.moneyIn ? this.moneyIn : null}
         denied: ${this.denied ? this.denied : null}
         invoiceOut: ${this.invoiceOut ? this.invoiceOut : null}
